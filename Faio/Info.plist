@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CADisableMinimumFrameDurationOnPhone</key>
+	<true/>
+	<key>CFBundleSignature</key>
+	<string>????</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>nytha.com</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>nytha</string>
+			</array>
+		</dict>
+	</array>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+	</dict>
+	<key>UIAppFonts</key>
+	<array>
+		<string>SourceHanSansSC-Bold.otf</string>
+		<string>SourceHanSansSC-ExtraLight.otf</string>
+		<string>SourceHanSansSC-Heavy.otf</string>
+		<string>SourceHanSansSC-Light.otf</string>
+		<string>SourceHanSansSC-Medium.otf</string>
+		<string>SourceHanSansSC-Normal.otf</string>
+		<string>SourceHanSansSC-Regular.otf</string>
+	</array>
+	<key>UIViewControllerBasedStatusBarAppearance</key>
+	<false/>
+</dict>
+</plist>

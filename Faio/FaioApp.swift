@@ -9,9 +9,12 @@ import SwiftUI
 
 @main
 struct FaioApp: App {
+    init() {
+        UITextField.appearance().tintColor = .black
+    }
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            CnalgadGUwjGuidePage()
         }
     }
 }

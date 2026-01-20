@@ -10,9 +10,22 @@
 		DD141FF42F1DC8880023444B /* Faio.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Faio.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		DD1420372F1E445F0023444B /* Exceptions for "Faio" folder in "Faio" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = DD141FF32F1DC8880023444B /* Faio */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		DD141FF62F1DC8880023444B /* Faio */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				DD1420372F1E445F0023444B /* Exceptions for "Faio" folder in "Faio" target */,
+			);
 			path = Faio;
 			sourceTree = "<group>";
 		};
@@ -252,19 +265,30 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Faio/Preview Content\"";
+				DEVELOPMENT_TEAM = 6NUFR97X3A;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Faio/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Faio;
+				INFOPLIST_KEY_NSCameraUsageDescription = "This app requires access to your camera for shooting so that you can take pictures and upload personal avatars, video works or share other images.  All shooting data will be securely stored on your personal device and will only be uploaded or shared with your explicit consent.";
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "This app needs to access your location information to deliver a more personalized experience.  Your location data will be strictly kept confidential and used only with your authorization to improve your overall user experience.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "This app needs to access your location information to deliver a more personalized experience.  Your location data will be strictly kept confidential and used only with your authorization to improve your overall user experience.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "This app needs to access your album data so that you can select the data you want to upload, change your avatar, post videos and posts.  All selected files will only be used for the purposes you have approved, securely stored on your device, and shared only with your consent.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIStatusBarHidden = NO;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.fwicnadeiqncei.Faio;
+				PRODUCT_BUNDLE_IDENTIFIER = app.myfy.test;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -280,19 +304,30 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Faio/Preview Content\"";
+				DEVELOPMENT_TEAM = 6NUFR97X3A;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Faio/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Faio;
+				INFOPLIST_KEY_NSCameraUsageDescription = "This app requires access to your camera for shooting so that you can take pictures and upload personal avatars, video works or share other images.  All shooting data will be securely stored on your personal device and will only be uploaded or shared with your explicit consent.";
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "This app needs to access your location information to deliver a more personalized experience.  Your location data will be strictly kept confidential and used only with your authorization to improve your overall user experience.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "This app needs to access your location information to deliver a more personalized experience.  Your location data will be strictly kept confidential and used only with your authorization to improve your overall user experience.";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "This app needs to access your album data so that you can select the data you want to upload, change your avatar, post videos and posts.  All selected files will only be used for the purposes you have approved, securely stored on your device, and shared only with your consent.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIStatusBarHidden = NO;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.fwicnadeiqncei.Faio;
+				PRODUCT_BUNDLE_IDENTIFIER = app.myfy.test;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
