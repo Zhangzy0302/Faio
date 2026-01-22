@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		DD148E212F207D1500E45042 /* HotSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = DD148E202F207D1500E45042 /* HotSwiftUI */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		DD141FF42F1DC8880023444B /* Faio.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Faio.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -36,6 +40,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DD148E212F207D1500E45042 /* HotSwiftUI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -65,6 +70,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = DD1420022F1DC8890023444B /* Build configuration list for PBXNativeTarget "Faio" */;
 			buildPhases = (
+				DD148E1E2F207C8200E45042 /* ShellScript */,
 				DD141FF02F1DC8880023444B /* Sources */,
 				DD141FF12F1DC8880023444B /* Frameworks */,
 				DD141FF22F1DC8880023444B /* Resources */,
@@ -78,6 +84,7 @@
 			);
 			name = Faio;
 			packageProductDependencies = (
+				DD148E202F207D1500E45042 /* HotSwiftUI */,
 			);
 			productName = Faio;
 			productReference = DD141FF42F1DC8880023444B /* Faio.app */;
@@ -107,6 +114,9 @@
 			);
 			mainGroup = DD141FEB2F1DC8880023444B;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				DD148E1F2F207D1500E45042 /* XCRemoteSwiftPackageReference "HotSwiftUI" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = DD141FF52F1DC8880023444B /* Products */;
 			projectDirPath = "";
@@ -126,6 +136,26 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		DD148E1E2F207C8200E45042 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nRESOURCES=/Applications/InjectionIII.app/Contents/Resources\nif [ -f \"$RESOURCES/copy_bundle.sh\" ]; then\n    \"$RESOURCES/copy_bundle.sh\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		DD141FF02F1DC8880023444B /* Sources */ = {
@@ -195,6 +225,10 @@
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = (
+					"-Xlinker",
+					"-interposable",
+				);
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -266,7 +300,9 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Faio/Preview Content\"";
 				DEVELOPMENT_TEAM = 6NUFR97X3A;
+				EMIT_FRONTEND_COMMAND_LINES = YES;
 				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Faio/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Faio;
@@ -305,7 +341,9 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Faio/Preview Content\"";
 				DEVELOPMENT_TEAM = 6NUFR97X3A;
+				EMIT_FRONTEND_COMMAND_LINES = "";
 				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Faio/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Faio;
@@ -357,6 +395,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		DD148E1F2F207D1500E45042 /* XCRemoteSwiftPackageReference "HotSwiftUI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/johnno1962/HotSwiftUI.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.2.4;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		DD148E202F207D1500E45042 /* HotSwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DD148E1F2F207D1500E45042 /* XCRemoteSwiftPackageReference "HotSwiftUI" */;
+			productName = HotSwiftUI;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = DD141FEC2F1DC8880023444B /* Project object */;
 }

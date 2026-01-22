@@ -2,6 +2,10 @@ import SwiftUI
 
 
 struct NwuivalNwiHome: View {
+    #if DEBUG
+        @ObserveInjection var forceRedraw
+      #endif
+    
     enum NuwiType {
         case Trending
         case Foryou
@@ -11,6 +15,7 @@ struct NwuivalNwiHome: View {
     @State var nwuivalCurrentType: NuwiType = NuwiType.Trending
     
     var body: some View {
+        let _ = forceRedraw
         ZStack {
             VawinvTheme.FaioColor.backgroundBlack.ignoresSafeArea()
             VStack(alignment: .leading){
@@ -66,6 +71,7 @@ struct NwuivalNwiHome: View {
                 ScrollView(.horizontal) {
                     LazyVStack(spacing: 12) {
                         VStack{
+                            RoundedRectangle(cornerRadius: 20).frame(width: 275, height: 100)
                             VStack{
                                 HStack{
                                     Circle().frame(width: 34)
@@ -75,18 +81,18 @@ struct NwuivalNwiHome: View {
                                 }.padding(.bottom, 8)
                                 Text("Finally found people who get...").font(.system(size: 16)).foregroundColor(.white.opacity(0.7))
                             }.padding(16)
-                        }.frame(maxWidth: 275, maxHeight: .infinity)
+                        }.frame(width: 275)
                             .background(
                             RoundedRectangle(cornerRadius: 20)
                                 .fill(Color(red: 39/255, green: 39/255, blue: 39/255))
                                 
                         )
                     }.padding(.horizontal, 20)
-                }.frame(height: .infinity)
+                }.frame(maxWidth: .infinity, maxHeight: .infinity)
                 
                 
-            }.frame(maxHeight: .infinity, alignment: .top)
-        }
+            }.frame(maxHeight: .infinity, alignment: .top).padding(.bottom, 86)
+        }.enableInjection()
     }
     
     struct NuwivalTypeText: View {

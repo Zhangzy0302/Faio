@@ -7,6 +7,17 @@
 import SwiftUI
 
 struct WalfuancvaAvajSign: View {
+    #if DEBUG
+        @ObserveInjection var forceRedraw
+  #endif
+    
+    enum WajfuanType {
+        case login
+        case register
+        case forgot
+    }
+    
+    var vasjawCurrentType: WajfuanType = .login
     
     @State private var vajdaUserEmail = ""
     @State private var vajdaPassword = ""
@@ -16,7 +27,11 @@ struct WalfuancvaAvajSign: View {
     @FocusState private var wivnadFocus2: Bool
     @FocusState private var wivnadFocus3: Bool
     
+    @State private var path = NavigationPath()
+    @State private var isGoNavPage = false
+    
     var body: some View{
+        let _ = forceRedraw
         ZStack{
             Color(red: 29/255, green: 29/255, blue: 29/255).ignoresSafeArea()
             
@@ -33,25 +48,37 @@ struct WalfuancvaAvajSign: View {
                             Text("Password").font(.system(size: 18)).fontWeight(.heavy).foregroundColor(.white)
                             BawnbvTextField(placeholder: "Enter password", text: $vajdaPassword, isFocused: $wivnadFocus2)
                         }
-                        VStack(alignment: .leading, spacing: 12){
-                            Text("Password").font(.system(size: 18)).fontWeight(.heavy).foregroundColor(.white)
-                            BawnbvTextField(placeholder: "Enter password again", text: $vajdaRepassword, isFocused: $wivnadFocus3)
+                        if(vasjawCurrentType != .login){
+                            VStack(alignment: .leading, spacing: 12){
+                                Text("Password").font(.system(size: 18)).fontWeight(.heavy).foregroundColor(.white)
+                                BawnbvTextField(placeholder: "Enter password again", text: $vajdaRepassword, isFocused: $wivnadFocus3)
+                            }
                         }
                     }
-                    HStack(){
-                        Text("Register").font(.system(size: 14)).foregroundColor(Color(red: 1, green: 235/255, blue: 59/255)).underline()
-                        Spacer()
-                        Text("Forget pssword").font(.system(size: 14)).foregroundColor(Color(red: 1, green: 141/255, blue: 26/255)).underline()
-                    }.frame(maxWidth: .infinity).padding(.top, 30)
+                    if(vasjawCurrentType == .login){
+                        HStack(){
+                            Text("Register").font(.system(size: 14)).foregroundColor(Color(red: 1, green: 235/255, blue: 59/255)).underline()
+                            Spacer()
+                            Text("Forget pssword").font(.system(size: 14)).foregroundColor(Color(red: 1, green: 141/255, blue: 26/255)).underline()
+                        }.frame(maxWidth: .infinity).padding(.top, 30)
+                    }
+                    
                 }.padding(.horizontal, 20)
                 Spacer()
-                FeqocnButton(feqocnText: "Login", action: {}).padding(.horizontal, 20)
+                FeqocnButton(feqocnText: "Login", action: {
+                    isGoNavPage = true
+                }).padding(.horizontal, 20).padding(.bottom, 34)
             }.frame(maxWidth: .infinity,maxHeight: .infinity, alignment: .top)
-        }.onTapGesture {
+        }.navigationBarBackButtonHidden(true)  // 隐藏返回按钮
+            .toolbar(.hidden, for: .navigationBar) // 隐藏整个导航栏
+            .navigationDestination(isPresented: $isGoNavPage, destination: {
+                BienajvfjWangrdNavPage()
+            })
+            .onTapGesture {
             wivnadFocus1 = false
             wivnadFocus2 = false
             wivnadFocus3 = false
-        }
+        }.enableInjection()
         
     }
 }
