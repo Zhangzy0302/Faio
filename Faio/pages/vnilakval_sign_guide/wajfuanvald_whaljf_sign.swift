@@ -11,6 +11,8 @@ struct WalfuancvaAvajSign: View {
         @ObserveInjection var forceRedraw
   #endif
     
+    @Binding var appPath: NavigationPath
+    
     enum WajfuanType {
         case login
         case register
@@ -26,9 +28,6 @@ struct WalfuancvaAvajSign: View {
     @FocusState private var wivnadFocus1: Bool
     @FocusState private var wivnadFocus2: Bool
     @FocusState private var wivnadFocus3: Bool
-    
-    @State private var path = NavigationPath()
-    @State private var isGoNavPage = false
     
     var body: some View{
         let _ = forceRedraw
@@ -66,14 +65,12 @@ struct WalfuancvaAvajSign: View {
                 }.padding(.horizontal, 20)
                 Spacer()
                 FeqocnButton(feqocnText: "Login", action: {
-                    isGoNavPage = true
+                    appPath.removeLast(appPath.count)
+                    appPath.append(HgywaAppRoute.main)
                 }).padding(.horizontal, 20).padding(.bottom, 34)
             }.frame(maxWidth: .infinity,maxHeight: .infinity, alignment: .top)
         }.navigationBarBackButtonHidden(true)  // 隐藏返回按钮
             .toolbar(.hidden, for: .navigationBar) // 隐藏整个导航栏
-            .navigationDestination(isPresented: $isGoNavPage, destination: {
-                BienajvfjWangrdNavPage()
-            })
             .onTapGesture {
             wivnadFocus1 = false
             wivnadFocus2 = false
@@ -81,8 +78,4 @@ struct WalfuancvaAvajSign: View {
         }.enableInjection()
         
     }
-}
-
-#Preview {
-    WalfuancvaAvajSign()
 }

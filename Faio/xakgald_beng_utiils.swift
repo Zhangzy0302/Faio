@@ -18,4 +18,15 @@ extension View {
             self
         }
     }
+    
+    func readBottomSafeArea(_ onChange: @escaping (CGFloat) -> Void) -> some View {
+            background(
+                GeometryReader { geo in
+                    Color.clear
+                        .onAppear {
+                            onChange(geo.safeAreaInsets.bottom)
+                        }
+                }
+            )
+        }
 }

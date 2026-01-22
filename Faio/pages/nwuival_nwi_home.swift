@@ -6,6 +6,8 @@ struct NwuivalNwiHome: View {
         @ObserveInjection var forceRedraw
       #endif
     
+    @Binding var appPath: NavigationPath
+    
     enum NuwiType {
         case Trending
         case Foryou
@@ -35,7 +37,7 @@ struct NwuivalNwiHome: View {
                     Rectangle().fill(LinearGradient(colors: [Color(red: 141/255, green: 88/255, blue: 253/255),
                                                              Color(red: 168/255, green: 37/255, blue: 163/255)],
                                                     startPoint: .top, endPoint: .bottom))
-                        .frame(width: .infinity, height: 68)
+                        .frame(height: 68)
                         .cornerRadius(15)
                         .overlay(content: {
                             HStack(content: {
@@ -49,7 +51,7 @@ struct NwuivalNwiHome: View {
                     Rectangle().fill(LinearGradient(colors: [Color(red: 41/255, green: 116/255, blue: 80/255),
                                                              Color(red: 47/255, green: 206/255, blue: 196/255)],
                                                     startPoint: .bottom, endPoint: .top))
-                        .frame(width: .infinity, height: 68)
+                        .frame(height: 68)
                         .cornerRadius(15)
                         .overlay(content: {
                             HStack(content: {
@@ -86,7 +88,9 @@ struct NwuivalNwiHome: View {
                             RoundedRectangle(cornerRadius: 20)
                                 .fill(Color(red: 39/255, green: 39/255, blue: 39/255))
                                 
-                        )
+                            ).onTapGesture {
+                                appPath.append(HgywaWorkRoute.workDetail)
+                            }
                     }.padding(.horizontal, 20)
                 }.frame(maxWidth: .infinity, maxHeight: .infinity)
                 
@@ -118,8 +122,3 @@ struct NwuivalNwiHome: View {
     }
 }
 
-
-
-#Preview {
-    NwuivalNwiHome()
-}

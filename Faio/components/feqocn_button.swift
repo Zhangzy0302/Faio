@@ -14,6 +14,7 @@ struct FeqocnButton: View {
     var feqocnBgColorIsOrange: Bool = true
     var feqocnFontSize: CGFloat = 16
     var feqocnFontWeight: Font.Weight = .black
+    var feqocnFontColor: Color = .black
     
     var action: () -> Void
     
@@ -21,7 +22,7 @@ struct FeqocnButton: View {
         Button(action: action){
             Text(feqocnText)
                 .font(.system(size: feqocnFontSize, weight: feqocnFontWeight))
-                .foregroundColor(.black)
+                .foregroundColor(feqocnFontColor)
                     .padding()
                      .frame(maxWidth: feqocnWidth, maxHeight: feqocnHeight)
                      .background(ZStack {
@@ -35,7 +36,7 @@ struct FeqocnButton: View {
                              Color.white
                          }
                      })
-                    .cornerRadius(30)
-        }
+                     .cornerRadius(30).padding(0)
+        }.buttonStyle(.plain)
     }
 }

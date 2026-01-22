@@ -15,6 +15,7 @@ struct BawnbvTextField: View {
 
     var keyboardType: UIKeyboardType = .default
     var height: CGFloat = 52
+    var verticalPadding: CGFloat = 16
     var cornerRadius: CGFloat = 20
 
     var body: some View {
@@ -32,7 +33,8 @@ struct BawnbvTextField: View {
             .tint(.black)
             .keyboardType(keyboardType)
             .padding(.horizontal, 16)
-            .frame(height: height)
+            .padding(.vertical, verticalPadding)
+            .frame(height: height, alignment: .topLeading)
             .background(
                 RoundedRectangle(cornerRadius: cornerRadius)
                     .fill(.white)

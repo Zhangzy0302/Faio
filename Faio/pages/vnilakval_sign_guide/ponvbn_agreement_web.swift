@@ -20,13 +20,17 @@ struct InAppWebView: UIViewRepresentable {
 }
 
 struct PonvbnAgreementWeb: View {
+#if DEBUG
+    @ObserveInjection var forceRedraw
+#endif
     let ponvbnWebUrl: String
     
     var body: some View{
+        let _ = forceRedraw
         VStack{
             AwicnalWnvTopBar()
             InAppWebView(urlString: ponvbnWebUrl)
                 .ignoresSafeArea()
-        }
+        }.navigationBarHidden(true).toolbar(.hidden, for: .navigationBar).enableInjection() // 隐藏整个导航栏
     }
 }

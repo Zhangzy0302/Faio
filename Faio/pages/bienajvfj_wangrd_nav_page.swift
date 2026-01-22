@@ -11,41 +11,44 @@ struct BienajvfjWangrdNavPage: View {
 #if DEBUG
     @ObserveInjection var forceRedraw
   #endif
+    @Binding var appPath: NavigationPath
+    
     @State var awncalCurrentPageIndex: Int = 1
     
     func page(for index: Int) -> AnyView {
         switch index {
-        case 0: return AnyView(EiwnbMessagePage())
-        case 1: return AnyView(NwuivalNwiHome())
-        default: return AnyView(HgrunclMinePage())
+        case 0: return AnyView(EiwnbMessagePage(appPath: $appPath))
+        case 1: return AnyView(NwuivalNwiHome(appPath: $appPath))
+        default: return AnyView(HgrunclUserPage(appPath: $appPath))
         }
     }
     
     var body: some View {
         let _ = forceRedraw
-        NavigationStack{
-            ZStack(alignment: .bottom){
-                VawinvTheme.FaioColor.backgroundBlack.ignoresSafeArea()
-                page(for: awncalCurrentPageIndex)
-                        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        ZStack(alignment: .bottom){
+            VawinvTheme.FaioColor.backgroundBlack.ignoresSafeArea()
+            page(for: awncalCurrentPageIndex)
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+            HStack{
                 HStack{
-                    HStack{
-                        bineanNavIcon(bienaIcon: "vnzwa_nav_chat", bienaNavIndex: 0, beinaCurrentIndex: $awncalCurrentPageIndex)
-                        bineanNavIcon(bienaIcon: "vnzwa_nav_home", bienaNavIndex: 1, beinaCurrentIndex: $awncalCurrentPageIndex)
-                        bineanNavIcon(bienaIcon: "vnzwa_nav_mine", bienaNavIndex: 2, beinaCurrentIndex: $awncalCurrentPageIndex)
-                    }.padding(.horizontal,10).frame(width: 225, height: 56)
-                        .background(RoundedRectangle(cornerRadius: 100).fill(Color(red: 19/255, green: 19/255,blue: 19/255)))
-                    Spacer()
-                    Circle().fill(VawinvTheme.FaioColor.gradientOrangeToYellow)
-                        .frame(width: 54)
-                        .overlay(content: {
-                            Image("vnzwa_icon_add").resizable().frame(width: 20,height: 20)
-                        })
-                        
-                }.frame(width: .infinity, height: 56, alignment: .bottom)
-                    .padding(.horizontal, 20).padding(.bottom, 10)
-            }.navigationBarHidden(true).toolbar(.hidden, for: .navigationBar)
-        }.enableInjection()
+                    bineanNavIcon(bienaIcon: "vnzwa_nav_chat", bienaNavIndex: 0, beinaCurrentIndex: $awncalCurrentPageIndex)
+                    bineanNavIcon(bienaIcon: "vnzwa_nav_home", bienaNavIndex: 1, beinaCurrentIndex: $awncalCurrentPageIndex)
+                    bineanNavIcon(bienaIcon: "vnzwa_nav_mine", bienaNavIndex: 2, beinaCurrentIndex: $awncalCurrentPageIndex)
+                }.padding(.horizontal,10).frame(width: 225, height: 56)
+                    .background(RoundedRectangle(cornerRadius: 100).fill(Color(red: 19/255, green: 19/255,blue: 19/255)))
+                Spacer()
+                Circle().fill(VawinvTheme.FaioColor.gradientOrangeToYellow)
+                    .frame(width: 54)
+                    .overlay(content: {
+                        Image("vnzwa_icon_add").resizable().frame(width: 20,height: 20)
+                    })
+                    .onTapGesture {
+                        appPath.append(HgywaWorkRoute.postPage)
+                    }
+                    
+            }.frame(height: 56, alignment: .bottom)
+                .padding(.horizontal, 20).padding(.bottom, 10)
+        }.navigationBarHidden(true).toolbar(.hidden, for: .navigationBar).enableInjection()
     }
     
     struct bineanNavIcon: View {
@@ -63,8 +66,4 @@ struct BienajvfjWangrdNavPage: View {
             }
         }
     }
-}
-
-#Preview {
-    BienajvfjWangrdNavPage()
 }

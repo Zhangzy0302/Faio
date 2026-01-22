@@ -24,7 +24,7 @@ struct FaioApp: App {
     }
     var body: some Scene {
         WindowGroup {
-            CnalgadGUwjGuidePage()
+            FaioAuthRoute()
         }
     }
 }
