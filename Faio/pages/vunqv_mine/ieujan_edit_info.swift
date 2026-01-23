@@ -21,6 +21,7 @@ struct IeujanEditInfo: View {
                         Circle().frame(width: 135, height: 135)
                         Image("vnzwa_change_avatar").resizable().frame(width: 40,height: 40)
                     }.frame(width: 135, height: 135)
+                        .padding(.top, 30).padding(.bottom, 24)
                     
                     VStack(alignment: .leading, spacing: 12){
                         Text("Name")

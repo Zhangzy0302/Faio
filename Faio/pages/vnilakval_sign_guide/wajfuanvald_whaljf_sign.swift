@@ -19,7 +19,7 @@ struct WalfuancvaAvajSign: View {
         case forgot
     }
     
-    var vasjawCurrentType: WajfuanType = .login
+    @State var vasjawCurrentType: WajfuanType = .login
     
     @State private var vajdaUserEmail = ""
     @State private var vajdaPassword = ""
@@ -54,11 +54,18 @@ struct WalfuancvaAvajSign: View {
                             }
                         }
                     }
+                    
                     if(vasjawCurrentType == .login){
                         HStack(){
                             Text("Register").font(.system(size: 14)).foregroundColor(Color(red: 1, green: 235/255, blue: 59/255)).underline()
+                                .onTapGesture {
+                                    vasjawCurrentType = .register
+                                }
                             Spacer()
                             Text("Forget pssword").font(.system(size: 14)).foregroundColor(Color(red: 1, green: 141/255, blue: 26/255)).underline()
+                                .onTapGesture {
+                                    vasjawCurrentType = .forgot
+                                }
                         }.frame(maxWidth: .infinity).padding(.top, 30)
                     }
                     

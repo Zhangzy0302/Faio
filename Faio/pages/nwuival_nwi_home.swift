@@ -48,6 +48,9 @@ struct NwuivalNwiHome: View {
                                 Image("vnzwa_script_writing").resizable().frame(width: 49, height: 58)
                             }).padding(.horizontal, 10)
                         })
+                        .onTapGesture {
+                            appPath.append(HgywaAiRoute.aiScriptWritingPresets)
+                        }
                     Rectangle().fill(LinearGradient(colors: [Color(red: 41/255, green: 116/255, blue: 80/255),
                                                              Color(red: 47/255, green: 206/255, blue: 196/255)],
                                                     startPoint: .bottom, endPoint: .top))
@@ -62,6 +65,9 @@ struct NwuivalNwiHome: View {
                                 Image("vnzwa_character_chat").resizable().frame(width: 49, height: 58)
                             }).padding(.horizontal, 10)
                         })
+                        .onTapGesture {
+                            appPath.append(HgywaAiRoute.aiCharacterChatPresets)
+                        }
                 }.padding(.horizontal, 20)
                 
                 HStack(spacing: 20){

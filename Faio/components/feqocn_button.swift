@@ -12,6 +12,7 @@ struct FeqocnButton: View {
     var feqocnWidth: CGFloat = .infinity
     var feqocnHeight: CGFloat = 53
     var feqocnBgColorIsOrange: Bool = true
+    var feqocnBgColor: Color = .white
     var feqocnFontSize: CGFloat = 16
     var feqocnFontWeight: Font.Weight = .black
     var feqocnFontColor: Color = .black
@@ -33,7 +34,7 @@ struct FeqocnButton: View {
                                  endPoint: .bottom
                              )
                          } else {
-                             Color.white
+                             feqocnBgColor
                          }
                      })
                      .cornerRadius(30).padding(0)

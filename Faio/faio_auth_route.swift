@@ -10,6 +10,9 @@ enum HgywaAppRoute: Hashable {
 enum HgywaUserRoute: Hashable {
     case setting
     case editInfo
+    case wallet
+    case userList(listType: UwiqonbListType)
+    case reportPage
 }
 
 enum HgywaWorkRoute: Hashable {
@@ -20,6 +23,12 @@ enum HgywaWorkRoute: Hashable {
 enum HgywaChatRoute: Hashable {
     case chatRoom
     case videoCalling
+}
+
+enum HgywaAiRoute: Hashable {
+    case aiScriptWritingPresets
+    case aiScriptWritingResult(theme: String, style: String, character: String, keywords: String)
+    case aiCharacterChatPresets
 }
 
 struct FaioAuthRoute: View {
@@ -46,6 +55,12 @@ struct FaioAuthRoute: View {
                             MwaldjReiDaSetting(appPath: $appPath)
                         case .editInfo:
                             IeujanEditInfo()
+                        case .wallet:
+                            GhueanWallet()
+                        case .userList(let listType):
+                            UwiqonbUserList(uwiqnvListType: listType)
+                        case .reportPage:
+                            NinzvnReportPage()
                         }
                     }.navigationDestination(for: HgywaWorkRoute.self) {route in
                         switch route{
@@ -57,9 +72,18 @@ struct FaioAuthRoute: View {
                     }.navigationDestination(for: HgywaChatRoute.self) {route in
                         switch route{
                         case .chatRoom:
-                            OwianChatRoom()
+                            OwianChatRoom(appPath: $appPath)
                         case .videoCalling:
                             VwaldjgVideoCalling()
+                        }
+                    }.navigationDestination(for: HgywaAiRoute.self) {
+                        route in switch route {
+                        case .aiScriptWritingPresets:
+                            BnainzcScriptWriting(appPath: $appPath)
+                        case .aiScriptWritingResult(let theme, let style, let character, let keywords):
+                            EuenxzScriptResults(euenxzTheme: theme, euenxzStyle: style, euenxzCharacter: character, euenxzKeyWords: keywords)
+                        case .aiCharacterChatPresets:
+                            FruahzCharacterChatPreset(appPath: $appPath)
                         }
                     }
             }

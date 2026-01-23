@@ -13,7 +13,9 @@ struct MwaldjReiDaSetting: View {
             VStack{
                 AwicnalWnvTopBar(awicanlCenterTitle: "Setting")
                 VStack(spacing: 10){
-                    MuwcSettingItem(muwcSettingSettingName: "My Gems", muwcIsShowGyms: true, action: {})
+                    MuwcSettingItem(muwcSettingSettingName: "My Gems", muwcIsShowGyms: true, action: {
+                        appPath.append(HgywaUserRoute.wallet)
+                    })
                     MuwcSettingItem(muwcSettingSettingName: "Privacy Policy", action: {
                         appPath.append(HgywaAppRoute.agreementWeb(webUrl: "https://app.wk3ht8ti.link/privacy"))
                     })
@@ -21,7 +23,7 @@ struct MwaldjReiDaSetting: View {
                         appPath.append(HgywaAppRoute.agreementWeb(webUrl: "https://app.wk3ht8ti.link/users"))
                     })
                     MuwcSettingItem(muwcSettingSettingName: "Blacklist", action: {
-                        
+                        appPath.append(HgywaUserRoute.userList(listType: .blacklist))
                     })
                 }.padding(.top, 20)
                 Spacer()

@@ -23,7 +23,7 @@ struct AwicnalWnvTopBar<Actions: View>: View {
     }
 
     var body: some View {
-        ZStack(alignment: .leading) {
+        ZStack(alignment: .center) {
             // 中间标题
             if let title = awicanlCenterTitle {
                 Text(title)

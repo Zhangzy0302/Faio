@@ -70,6 +70,6 @@ struct CnalgadGUwjGuidePage: View {
 
                 }
             }.padding(.horizontal, 20).padding(.bottom, 60).frame(maxHeight: .infinity, alignment: .bottom)
-        }.enableInjection()
+        }.navigationBarHidden(true).enableInjection()
     }
 }

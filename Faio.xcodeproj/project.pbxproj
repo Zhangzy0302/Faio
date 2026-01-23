@@ -8,10 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		DD148E212F207D1500E45042 /* HotSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = DD148E202F207D1500E45042 /* HotSwiftUI */; };
+		DDC766922F2388B9001AE606 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DDC766912F2388B9001AE606 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		DD141FF42F1DC8880023444B /* Faio.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Faio.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		DDC766912F2388B9001AE606 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -50,6 +52,7 @@
 		DD141FEB2F1DC8880023444B = {
 			isa = PBXGroup;
 			children = (
+				DDC766912F2388B9001AE606 /* LaunchScreen.storyboard */,
 				DD141FF62F1DC8880023444B /* Faio */,
 				DD141FF52F1DC8880023444B /* Products */,
 			);
@@ -132,6 +135,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DDC766922F2388B9001AE606 /* LaunchScreen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

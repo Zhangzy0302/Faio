@@ -79,7 +79,7 @@ struct RecnxdjWorkDetail: View {
                         .fill(Color(red: 39/255, green: 36/255, blue: 39/255))
                         .frame(width: 40)
                         .overlay(content: {
-                            
+                            Image("vnzwa_icon_like_un").resizable().frame(width: 24, height: 24)
                         })
                 }.padding(.horizontal, 20).padding(.top, 13)
                     .readBottomSafeArea { value in

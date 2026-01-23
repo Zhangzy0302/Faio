@@ -29,21 +29,29 @@ struct HgrunclUserPage: View {
                         .foregroundColor(.white.opacity(0.5))
                         .padding(.bottom, 22)
                     HStack{
-                        HStack(spacing: 8){
-                            Text("21").font(.system(size: 16))
-                                .fontWeight(.semibold)
-                                .foregroundColor(.white)
-                            Text("Folloing").font(.system(size: 12))
-                                .fontWeight(.regular)
-                                .foregroundColor(.white.opacity(0.5))
+                        Button(action: {
+                            appPath.append(HgywaUserRoute.userList(listType: .following))
+                        }){
+                            HStack(spacing: 8){
+                                Text("21").font(.system(size: 16))
+                                    .fontWeight(.semibold)
+                                    .foregroundColor(.white)
+                                Text("Folloing").font(.system(size: 12))
+                                    .fontWeight(.regular)
+                                    .foregroundColor(.white.opacity(0.5))
+                            }
                         }.padding(.trailing, 30)
-                        HStack(spacing: 8){
-                            Text("21").font(.system(size: 16))
-                                .fontWeight(.semibold)
-                                .foregroundColor(.white)
-                            Text("Folloing").font(.system(size: 12))
-                                .fontWeight(.regular)
-                                .foregroundColor(.white.opacity(0.5))
+                        Button(action: {
+                            appPath.append(HgywaUserRoute.userList(listType: .fans))
+                        }){
+                            HStack(spacing: 8){
+                                Text("21").font(.system(size: 16))
+                                    .fontWeight(.semibold)
+                                    .foregroundColor(.white)
+                                Text("Folloing").font(.system(size: 12))
+                                    .fontWeight(.regular)
+                                    .foregroundColor(.white.opacity(0.5))
+                            }
                         }
                     }
                     

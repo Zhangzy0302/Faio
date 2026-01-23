@@ -13,6 +13,7 @@ struct VwaldjgVideoCalling: View {
                         .font(.system(size: 14))
                         .foregroundColor(.white)
                     Circle().fill(Color(red: 1, green: 87/255, blue: 51/255))
+                        .frame(width: 54, height: 54)
                         .overlay(){
                             Image("vnzwa_quit_call").resizable().frame(width: 34, height: 34)
                         }.onTapGesture {
