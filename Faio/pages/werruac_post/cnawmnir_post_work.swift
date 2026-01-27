@@ -1,15 +1,11 @@
 import SwiftUI
 
 struct CnawmnirPostWork: View {
-#if DEBUG
-    @ObserveInjection var forceRedraw
-  #endif
     @State private var cnawmnirUserName: String = ""
     @State private var cnawnirUploadVideo: String = ""
     
     @FocusState private var cnawmnirNameFocus: Bool
     var body: some View{
-        let _ = forceRedraw
         ZStack(alignment: .top){
             VawinvTheme.FaioColor.backgroundBlack.ignoresSafeArea()
             VStack{
@@ -49,6 +45,6 @@ struct CnawmnirPostWork: View {
             }.padding()
         }.navigationBarHidden(true).onTapGesture {
             cnawmnirNameFocus = false
-        }.enableInjection()
+        }
     }
 }

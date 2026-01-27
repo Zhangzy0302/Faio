@@ -6,25 +6,34 @@
 //
 
 import SwiftUI
-@_exported import HotSwiftUI
 
 @main
 struct FaioApp: App {
+    
+    @StateObject private var userVM = FaioUserViewModel()
+    @StateObject private var workVM = FaioWorksViewModel()
+    @StateObject private var chatVM = FaioChatViewModel()
+    @StateObject private var commentVM = FaioCommentsViewModel()
+    
     init() {
-    #if DEBUG
-      Bundle(path: "/Applications/InjectionIII.app/Contents/Resources/iOSInjection.bundle")?.load()
-      if let path = Bundle.main.path(
-        forResource:
-          "iOSInjection", ofType: "bundle")
-      {
-        Bundle(path: path)!.load()
-      }
-    #endif
         UITextField.appearance().tintColor = .black
+        
     }
     var body: some Scene {
         WindowGroup {
             FaioAuthRoute()
+                .environmentObject(userVM)
+                .environmentObject(workVM)
+                .environmentObject(chatVM)
+                .environmentObject(commentVM)
+                .onAppear{
+                    FaioStorageManager.shared.initializeAllDefaults()
+                    userVM.loadLoginUser()
+                    workVM.getAllWorks()
+                    chatVM.getMyChatRooms()
+                }.overlay {
+                    FaioHUDView()
+                    }
         }
     }
 }

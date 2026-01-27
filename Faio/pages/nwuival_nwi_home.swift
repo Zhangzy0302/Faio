@@ -2,9 +2,6 @@ import SwiftUI
 
 
 struct NwuivalNwiHome: View {
-    #if DEBUG
-        @ObserveInjection var forceRedraw
-      #endif
     
     @Binding var appPath: NavigationPath
     
@@ -16,8 +13,12 @@ struct NwuivalNwiHome: View {
     
     @State var nwuivalCurrentType: NuwiType = NuwiType.Trending
     
+    @EnvironmentObject var userVM: FaioUserViewModel
+    @EnvironmentObject var workVM: FaioWorksViewModel
+    
+    @State private var bottomSafeHeight: CGFloat = 0
+    
     var body: some View {
-        let _ = forceRedraw
         ZStack {
             VawinvTheme.FaioColor.backgroundBlack.ignoresSafeArea()
             VStack(alignment: .leading){
@@ -31,6 +32,12 @@ struct NwuivalNwiHome: View {
                     }
                     Spacer()
                     Circle().frame(width: 40, height: 40)
+                        .overlay(content: {
+                            ZwnagIreujImage(zwnagIreujImageUrl: userVM.currentUser?.feruyqCawdUserName ?? "",
+                                            zwnagIreujWidth: 40,
+                                            zwnagIreujHeight: 40,
+                                            zwnagIreujIsCircle: true)
+                        })
                 }.padding(.horizontal, 20).padding(.top, 16)
                 
                 HStack(spacing: 15){
@@ -76,33 +83,57 @@ struct NwuivalNwiHome: View {
                     NuwivalTypeText(typeText: "Following", type: .Following, currentType: $nwuivalCurrentType)
                 }.padding(.horizontal, 20).padding(.top, 20).padding(.bottom, 16)
                 
-                ScrollView(.horizontal) {
-                    LazyVStack(spacing: 12) {
-                        VStack{
-                            RoundedRectangle(cornerRadius: 20).frame(width: 275, height: 100)
-                            VStack{
-                                HStack{
-                                    Circle().frame(width: 34)
-                                    Text("Lyric").font(.system(size: 16)).fontWeight(.semibold).foregroundColor(.white)
-                                    Spacer()
-                                    FeqocnButton(feqocnText: "Follow", feqocnWidth: 76, feqocnHeight: 24, feqocnFontSize: 11, feqocnFontWeight: .semibold, action: {})
-                                }.padding(.bottom, 8)
-                                Text("Finally found people who get...").font(.system(size: 16)).foregroundColor(.white.opacity(0.7))
-                            }.padding(16)
-                        }.frame(width: 275)
-                            .background(
-                            RoundedRectangle(cornerRadius: 20)
-                                .fill(Color(red: 39/255, green: 39/255, blue: 39/255))
+                GeometryReader{geo in
+                    ScrollView(.horizontal) {
+                        LazyHStack(spacing: 12) {
+                            ForEach(workVM.allWorks) { work in
+                                VStack{
+                                    ZwnagIreujImage(zwnagIreujImageUrl: work.weianzVenvnImageListUrl.first ?? "",
+                                                    zwnagIreujWidth: 275, zwnagIreujHeight: geo.size.height - 98)
+                                        .cornerRadius(20)
+                                    
+                                    VStack(alignment: .leading){
+                                        if let maiwanUserInfo: FeruyqCawdUer = workVM.getUserByCreatorId(creatorId: work.weianzVenvnCreatorId) {
+                                            HStack{
+                                                ZwnagIreujImage(zwnagIreujImageUrl: maiwanUserInfo.feruyqCawdAvatar, zwnagIreujWidth: 34, zwnagIreujHeight: 34, zwnagIreujIsCircle: true)
+                                                Text(maiwanUserInfo.feruyqCawdUserName).font(.system(size: 16)).fontWeight(.semibold).foregroundColor(.white)
+                                                Spacer()
+                                                FeqocnButton(feqocnText: "Follow", feqocnWidth: 76, feqocnHeight: 24, feqocnFontSize: 11, feqocnFontWeight: .semibold, action: {})
+                                            }.padding(.bottom, 8)
+                                        } else {
+                                            HStack{
+                                                Circle().frame(width: 34)
+                                                Text("none").font(.system(size: 16)).fontWeight(.semibold).foregroundColor(.white)
+                                                Spacer()
+                                            }.padding(.bottom, 8)
+                                        }
+                                        
+                                        Text(work.weianzVenvnTextContent)
+                                            .font(.system(size: 16))
+                                            .lineLimit(1)
+                                            .foregroundColor(.white.opacity(0.7))
+                                    }.padding(16).frame(height: 98)
+                                }.frame(width: 275, height: geo.size.height)
+                                    .background(
+                                    RoundedRectangle(cornerRadius: 20)
+                                        .fill(Color(red: 39/255, green: 39/255, blue: 39/255))
+                                        
+                                    ).onTapGesture {
+                                        appPath.append(HgywaWorkRoute.workDetail(workId: work.weianzVenvnWorkId))
+                                    }
                                 
-                            ).onTapGesture {
-                                appPath.append(HgywaWorkRoute.workDetail)
                             }
-                    }.padding(.horizontal, 20)
-                }.frame(maxWidth: .infinity, maxHeight: .infinity)
+                        }.frame(height: geo.size.height).padding(.horizontal, 20)
+                    }.frame(maxHeight: .infinity)
+                    .layoutPriority(1)
+                }
                 
                 
-            }.frame(maxHeight: .infinity, alignment: .top).padding(.bottom, 86)
-        }.enableInjection()
+            }.readBottomSafeArea{value in 
+                bottomSafeHeight = value}
+                .frame(maxHeight: .infinity, alignment: .top)
+                .padding(.bottom, 86 + bottomSafeHeight)
+        }
     }
     
     struct NuwivalTypeText: View {

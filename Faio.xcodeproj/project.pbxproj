@@ -7,13 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		DD148E212F207D1500E45042 /* HotSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = DD148E202F207D1500E45042 /* HotSwiftUI */; };
-		DDC766922F2388B9001AE606 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DDC766912F2388B9001AE606 /* LaunchScreen.storyboard */; };
+		DDA6313C2F24AE5A005F9EB3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DDA6313B2F24AE5A005F9EB3 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		DD141FF42F1DC8880023444B /* Faio.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Faio.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		DDC766912F2388B9001AE606 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		DDA6313B2F24AE5A005F9EB3 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -42,7 +41,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DD148E212F207D1500E45042 /* HotSwiftUI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -52,7 +50,7 @@
 		DD141FEB2F1DC8880023444B = {
 			isa = PBXGroup;
 			children = (
-				DDC766912F2388B9001AE606 /* LaunchScreen.storyboard */,
+				DDA6313B2F24AE5A005F9EB3 /* LaunchScreen.storyboard */,
 				DD141FF62F1DC8880023444B /* Faio */,
 				DD141FF52F1DC8880023444B /* Products */,
 			);
@@ -87,7 +85,6 @@
 			);
 			name = Faio;
 			packageProductDependencies = (
-				DD148E202F207D1500E45042 /* HotSwiftUI */,
 			);
 			productName = Faio;
 			productReference = DD141FF42F1DC8880023444B /* Faio.app */;
@@ -118,7 +115,6 @@
 			mainGroup = DD141FEB2F1DC8880023444B;
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
-				DD148E1F2F207D1500E45042 /* XCRemoteSwiftPackageReference "HotSwiftUI" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = DD141FF52F1DC8880023444B /* Products */;
@@ -135,7 +131,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DDC766922F2388B9001AE606 /* LaunchScreen.storyboard in Resources */,
+				DDA6313C2F24AE5A005F9EB3 /* LaunchScreen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -300,6 +296,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Faio/Preview Content\"";
@@ -322,7 +319,7 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -341,6 +338,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Faio/Preview Content\"";
@@ -363,7 +361,7 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -399,25 +397,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		DD148E1F2F207D1500E45042 /* XCRemoteSwiftPackageReference "HotSwiftUI" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/johnno1962/HotSwiftUI.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.2.4;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		DD148E202F207D1500E45042 /* HotSwiftUI */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = DD148E1F2F207D1500E45042 /* XCRemoteSwiftPackageReference "HotSwiftUI" */;
-			productName = HotSwiftUI;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = DD141FEC2F1DC8880023444B /* Project object */;
 }

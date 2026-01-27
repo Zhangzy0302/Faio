@@ -3,11 +3,16 @@ import SwiftUI
 struct OwianChatRoom: View {
     @Binding var appPath: NavigationPath
     
+    let owianRoomId: Int
+    
     @State private var owianBottomHeight: CGFloat = 0
     @State private var owianInputText: String = ""
     @FocusState private var owianInputIsFocus: Bool
     
     @State private var owianIsShowBlock: Bool = false
+    
+    @EnvironmentObject var chatVM: FaioChatViewModel
+    @EnvironmentObject var userVM: FaioUserViewModel
     
     var body: some View {
         ZStack(alignment: .top){
@@ -92,5 +97,8 @@ struct OwianChatRoom: View {
                 ZcnwinaReportBlockBottom(zcnwinaIsShow: $owianIsShowBlock, appPath: $appPath)
             }
         }.navigationBarHidden(true)
+            .onAppear{
+                chatVM.getMessageListByChatId(chatRoomId: owianRoomId)
+            }
     }
 }

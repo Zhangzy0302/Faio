@@ -1,6 +1,8 @@
 import SwiftUI
 
 struct GhueanWallet: View {
+    @EnvironmentObject var userVM: FaioUserViewModel
+    
     var body: some View {
         ZStack(alignment: .top) {
             VawinvTheme.FaioColor.backgroundBlack.ignoresSafeArea()
@@ -15,7 +17,7 @@ struct GhueanWallet: View {
                                 .foregroundColor(.white)
                                 .padding(.trailing, 16)
                             Image("vnzwa_diamond").resizable().frame(width: 20, height: 20)
-                            Text("300")
+                            Text("\(userVM.currentUser?.feruyqCawdWalletBalance ?? 0)")
                                 .font(.system(size: 14))
                                 .fontWeight(.black)
                                 .foregroundColor(.white)

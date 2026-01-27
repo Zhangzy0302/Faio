@@ -34,6 +34,16 @@
 		<string>SourceHanSansSC-Normal.otf</string>
 		<string>SourceHanSansSC-Regular.otf</string>
 	</array>
+	<key>NSCameraUsageDescription</key>
+	<string>This app needs camera access to capture landscapes, portraits, and videos. Your photos and videos can decorate your profile or share with friends. They&apos;re securely stored on your device and only shared with your permission. Privacy and security are protected.</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>This app needs microphone access for recording voice messages and sharing audio. Audio stays on your device unless you share. Privacy is our priority.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>This app needs access to your photo library for sharing memorable photos/videos. It stays on your device unless you share. Access is for easy sharing and is privacy-protected.</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>This app needs location access for sharing, discovering events, and using location-based features. Location data is used responsibly with your consent. Privacy and security are our priorities.</string>
+	<key>NSLocationUsageDescription</key>
+	<string>This app needs location access for sharing, discovering events, and using location-based features. Location data is used responsibly with your consent. Privacy and security are our priorities.</string>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
 </dict>

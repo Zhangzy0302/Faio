@@ -27,6 +27,11 @@ struct NinzvnReportPage: View {
                 BawnbvTextField(placeholder: "Supplementary description (optional)", text: $ninzvnInput, isFocused: $ninzvnIsFocus, height: 128)
                 Spacer()
                 FeqocnButton(feqocnText: "Submit", action: {
+                    if(ninzvnReportSeletType.isEmpty){
+                        FaioHUD.toast("Please select the type of report")
+                        return
+                    }
+                    FaioHUD.success("Report submitted successfully")
                     dismiss()
                 }).padding(.bottom, 20)
             }.padding(.horizontal, 20)

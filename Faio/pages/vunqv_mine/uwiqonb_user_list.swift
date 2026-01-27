@@ -9,6 +9,8 @@ enum UwiqonbListType {
 struct UwiqonbUserList: View {
     let uwiqnvListType: UwiqonbListType
     
+    @EnvironmentObject var userVM: FaioUserViewModel
+    
     var body: some View {
         ZStack(alignment: .top) {
             VawinvTheme.FaioColor.backgroundBlack.ignoresSafeArea()

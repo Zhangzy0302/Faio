@@ -31,6 +31,10 @@ extension View {
         }
 }
 
+func delay(_ seconds: Double) async {
+    try? await Task.sleep(nanoseconds: UInt64(seconds * 1_000_000_000))
+}
+
 struct CustomDialog<Content: View>: View {
 
     @Binding var isPresented: Bool

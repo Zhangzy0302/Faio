@@ -1,35 +1,45 @@
 import SwiftUI
 
 struct RecnxdjWorkDetail: View {
-#if DEBUG
-    @ObserveInjection var forceRedraw
-  #endif
-    
     @Binding var appPath: NavigationPath
+    
+    let recnxdjWorkId: Int
     
     @State private var recnInputText: String = ""
     @FocusState private var recnInputIsFocus: Bool
     
     @State private var bottomSafe: CGFloat = 0
+    @EnvironmentObject var workVM: FaioWorksViewModel
+    @EnvironmentObject var commentVM: FaioCommentsViewModel
+    @EnvironmentObject var userVM: FaioUserViewModel
+
+    @State private var isPresented: Bool = false
     
     var body: some View {
-        let _ = forceRedraw
         ZStack(alignment: .top){
             VawinvTheme.FaioColor.backgroundBlack.ignoresSafeArea()
-            VStack{
+
+            if let vunladaCreatorInfo  = workVM.getUserByCreatorId(creatorId: workVM.workDetail?.weianzVenvnCreatorId ?? 0) {
+              VStack{
                 AwicnalWnvTopBar(awicanlActions: {
                     HStack(spacing: 8){
-                        Circle().frame(width: 34)
-                        Text("Lyric")
+                        ZwnagIreujImage(zwnagIreujImageUrl: vunladaCreatorInfo.feruyqCawdAvatar, zwnagIreujWidth: 34, zwnagIreujHeight: 34, zwnagIreujIsCircle: true)
+                        Text(vunladaCreatorInfo.feruyqCawdUserName)
                             .font(.system(size: 16))
                             .fontWeight(.semibold)
                             .foregroundColor(.white)
                     }
                     Spacer()
-                    HStack(spacing: 16){
-                        FeqocnButton(feqocnText: "Follow", feqocnWidth: 61,feqocnHeight: 24, feqocnFontSize: 11,feqocnFontWeight: .semibold,feqocnFontColor: .white, action: {})
-                        Image("vnzwa_icon_more").resizable().frame(width: 40, height: 40)
+                    if(workVM.workDetail?.weianzVenvnCreatorId != userVM.currentUser?.feruyqCawdUserId){
+                        HStack(spacing: 16){
+                          FeqocnButton(feqocnText: "Follow", feqocnWidth: 61,feqocnHeight: 24, feqocnFontSize: 11,feqocnFontWeight: .semibold,feqocnFontColor: .white, action: {})
+                          Image("vnzwa_icon_more").resizable().frame(width: 40, height: 40)
+                            .onTapGesture {
+                              isPresented = true
+                            }
+                      }
                     }
+                    
                 }
                 
                 )
@@ -42,7 +52,7 @@ struct RecnxdjWorkDetail: View {
                                     Image("vnzwa_icon_play").resizable().frame(width: 60, height: 60)
                                 }
                             })
-                        Text("Finally found people who get my movie passion. So happy to have these friends.")
+                        Text(workVM.workDetail?.weianzVenvnTextContent ?? "")
                             .font(.system(size: 16))
                             .fontWeight(.bold)
                             .foregroundColor(.white)
@@ -50,7 +60,7 @@ struct RecnxdjWorkDetail: View {
                         
                         // comment
                         VStack(alignment: .leading){
-                            Text("33 Comments")
+                            Text("\(commentVM.workComments.count) Comments")
                                 .font(.system(size: 16))
                                 .fontWeight(.black)
                                 .foregroundColor(Color(red: 1, green: 153/255, blue: 0))
@@ -89,19 +99,18 @@ struct RecnxdjWorkDetail: View {
                     .background(Rectangle().fill(.black))
                     .ignoresSafeArea(edges: .bottom)
             }
+            } else {
+                Text("Work not found")
+            }
+            BottomSheet(isPresented: $isPresented, content: {
+                                Text("Report")
+                                Text("Block")
+                            })
         }.navigationBarHidden(true).ignoresSafeArea(edges: .bottom).onTapGesture {
             recnInputIsFocus = false
-        }.enableInjection()
-    }
-}
-
-#Preview {
-    RecnxdjWorkDetail_PreviewWrapper()
-}
-struct RecnxdjWorkDetail_PreviewWrapper: View {
-    @State private var path = NavigationPath()
-
-    var body: some View {
-        RecnxdjWorkDetail(appPath: $path)
+        }.onAppear{
+            workVM.getWorkDetailByWorkId(workId: recnxdjWorkId)
+            commentVM.getCommentsByWorkId(workId: recnxdjWorkId)
+        }
     }
 }

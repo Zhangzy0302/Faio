@@ -1,19 +1,17 @@
 import SwiftUI
 
 struct MwaldjReiDaSetting: View {
-#if DEBUG
-    @ObserveInjection var forceRedraw
-  #endif
     @Binding var appPath: NavigationPath
     
+    @EnvironmentObject var userVM: FaioUserViewModel
+    
     var body: some View{
-        let _ = forceRedraw
         ZStack(alignment: .top){
             VawinvTheme.FaioColor.backgroundBlack.ignoresSafeArea()
             VStack{
                 AwicnalWnvTopBar(awicanlCenterTitle: "Setting")
                 VStack(spacing: 10){
-                    MuwcSettingItem(muwcSettingSettingName: "My Gems", muwcIsShowGyms: true, action: {
+                    MuwcSettingItem(muwcSettingSettingName: "My Gems", muwcIsShowGyms: true, muwcGemsCount: userVM.currentUser?.feruyqCawdWalletBalance, action: {
                         appPath.append(HgywaUserRoute.wallet)
                     })
                     MuwcSettingItem(muwcSettingSettingName: "Privacy Policy", action: {
@@ -35,12 +33,13 @@ struct MwaldjReiDaSetting: View {
                     })
                 }.padding(.horizontal, 20).padding(.bottom, 34)
             }
-        }.navigationBarHidden(true).enableInjection()
+        }.navigationBarHidden(true)
     }
     
     struct MuwcSettingItem: View {
         let muwcSettingSettingName: String
         var muwcIsShowGyms: Bool = false
+        var muwcGemsCount: Int?
         var action: () -> Void
         
         var body: some View {
@@ -54,7 +53,7 @@ struct MwaldjReiDaSetting: View {
                     if(muwcIsShowGyms){
                         HStack(spacing: 6){
                             Image("vnzwa_diamond").resizable().frame(width: 20, height: 20)
-                            Text("300").font(.system(size: 14)).fontWeight(.medium).foregroundColor(.white)
+                            Text("\(muwcGemsCount ?? 0)").font(.system(size: 14)).fontWeight(.medium).foregroundColor(.white)
                         }.padding(.trailing, 12)
                     }
                     

@@ -1,22 +1,24 @@
 import SwiftUI
 
 struct HgrunclUserPage: View {
-#if DEBUG
-    @ObserveInjection var forceRedraw
-  #endif
-    
     @Binding var appPath: NavigationPath
+    let hgruncUserId: Int
+    let hgruncIsMinePage: Bool
+    
+    @EnvironmentObject var userVM: FaioUserViewModel
     
     var body: some View {
-        let _ = forceRedraw
         ZStack(alignment: .top){
             VawinvTheme.FaioColor.backgroundBlack.ignoresSafeArea()
             Rectangle().frame(height: 375).ignoresSafeArea(edges: .top)
+                .overlay{
+                    ZwnagIreujImage(zwnagIreujImageUrl: userVM.userInfo?.feruyqCawdAvatar ?? "vnzwa_default_avatar", zwnagIreujHeight: 375)
+                }
             
             VStack(alignment: .leading){
                 VStack(alignment: .leading){
                     HStack{
-                        Text("Lyric").font(.system(size: 24))
+                        Text(userVM.userInfo?.feruyqCawdUserName ?? "").font(.system(size: 24))
                             .fontWeight(.semibold)
                             .foregroundColor(.white)
                         Spacer()
@@ -25,7 +27,7 @@ struct HgrunclUserPage: View {
                                 appPath.append(HgywaUserRoute.editInfo)
                             }
                     }.padding(.bottom, 6)
-                    Text("A movie, a journey of soul.")
+                    Text(userVM.userInfo?.feruyqCawdAboutMe ?? "")
                         .foregroundColor(.white.opacity(0.5))
                         .padding(.bottom, 22)
                     HStack{
@@ -33,7 +35,7 @@ struct HgrunclUserPage: View {
                             appPath.append(HgywaUserRoute.userList(listType: .following))
                         }){
                             HStack(spacing: 8){
-                                Text("21").font(.system(size: 16))
+                                Text("\(userVM.userInfo?.feruyqCawdFollowing.count ?? 0)").font(.system(size: 16))
                                     .fontWeight(.semibold)
                                     .foregroundColor(.white)
                                 Text("Folloing").font(.system(size: 12))
@@ -45,7 +47,7 @@ struct HgrunclUserPage: View {
                             appPath.append(HgywaUserRoute.userList(listType: .fans))
                         }){
                             HStack(spacing: 8){
-                                Text("21").font(.system(size: 16))
+                                Text("\(userVM.userInfo?.feruyqCawdFans.count ?? 0)").font(.system(size: 16))
                                     .fontWeight(.semibold)
                                     .foregroundColor(.white)
                                 Text("Folloing").font(.system(size: 12))
@@ -76,7 +78,9 @@ struct HgrunclUserPage: View {
                         appPath.append(HgywaUserRoute.setting)
                     }
             }.frame(maxWidth: .infinity, alignment: .trailing)
-        }.enableInjection()
+        }.onAppear{
+            userVM.loadUserInfoByUid(uid: hgruncUserId)
+        }
     }
 }
 

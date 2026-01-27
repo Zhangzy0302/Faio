@@ -8,9 +8,6 @@
 import SwiftUI
 
 struct CnalgadGUwjGuidePage: View {
-    #if DEBUG
-        @ObserveInjection var forceRedraw
-      #endif
     @Binding var canlAuthPath: NavigationPath
 
     @State private var canalgianw = false;
@@ -19,7 +16,6 @@ struct CnalgadGUwjGuidePage: View {
     @State private var wcvnanGoToSign: Bool = false
     
     var body: some View {
-        let _ = forceRedraw
         ZStack() {
             Image("vnzwa_guide_bg")
                 .resizable()
@@ -38,7 +34,7 @@ struct CnalgadGUwjGuidePage: View {
                         if(isAgree){
                             canlAuthPath.append(HgywaAppRoute.sign)
                         }else{
-                            print("please")
+                            FaioHUD.toast("Please read and agree to the agreement first")
                         }
                     })
                     
@@ -70,6 +66,6 @@ struct CnalgadGUwjGuidePage: View {
 
                 }
             }.padding(.horizontal, 20).padding(.bottom, 60).frame(maxHeight: .infinity, alignment: .bottom)
-        }.navigationBarHidden(true).enableInjection()
+        }.navigationBarHidden(true)
     }
 }

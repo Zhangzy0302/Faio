@@ -8,23 +8,21 @@
 import SwiftUI
 
 struct BienajvfjWangrdNavPage: View {
-#if DEBUG
-    @ObserveInjection var forceRedraw
-  #endif
     @Binding var appPath: NavigationPath
     
     @State var awncalCurrentPageIndex: Int = 1
+    
+    private let storage = FaioStorageManager.shared
     
     func page(for index: Int) -> AnyView {
         switch index {
         case 0: return AnyView(EiwnbMessagePage(appPath: $appPath))
         case 1: return AnyView(NwuivalNwiHome(appPath: $appPath))
-        default: return AnyView(HgrunclUserPage(appPath: $appPath))
+        default: return AnyView(HgrunclUserPage(appPath: $appPath, hgruncUserId: storage.getCurrentUserId(), hgruncIsMinePage: true))
         }
     }
     
     var body: some View {
-        let _ = forceRedraw
         ZStack(alignment: .bottom){
             VawinvTheme.FaioColor.backgroundBlack.ignoresSafeArea()
             page(for: awncalCurrentPageIndex)
@@ -48,7 +46,7 @@ struct BienajvfjWangrdNavPage: View {
                     
             }.frame(height: 56, alignment: .bottom)
                 .padding(.horizontal, 20).padding(.bottom, 10)
-        }.navigationBarHidden(true).toolbar(.hidden, for: .navigationBar).enableInjection()
+        }.navigationBarHidden(true).toolbar(.hidden, for: .navigationBar)
     }
     
     struct bineanNavIcon: View {

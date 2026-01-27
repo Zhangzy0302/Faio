@@ -1,17 +1,17 @@
 import SwiftUI
 
 struct IeujanEditInfo: View {
-#if DEBUG
-    @ObserveInjection var forceRedraw
-  #endif
     @State private var ieujanUserName: String = ""
     @State private var ieujanAboutMe: String = ""
     
     @FocusState private var ieujanNameFocus: Bool
     @FocusState private var ieujanAboutMeFocus: Bool
     
+    @State private var ieujanMyAvatar: String = "vnzwa_default_avatar"
+    
+    @EnvironmentObject var userVM: FaioUserViewModel
+    
     var body: some View {
-        let _ = forceRedraw
         ZStack(alignment: .top){
             VawinvTheme.FaioColor.backgroundBlack.ignoresSafeArea()
             VStack{
@@ -19,6 +19,10 @@ struct IeujanEditInfo: View {
                 VStack{
                     ZStack(alignment: .bottomTrailing){
                         Circle().frame(width: 135, height: 135)
+                            .overlay(content: {
+                                ZwnagIreujImage(zwnagIreujImageUrl: ieujanMyAvatar,
+                                                zwnagIreujWidth: 135, zwnagIreujHeight: 135, zwnagIreujIsCircle: true)
+                            })
                         Image("vnzwa_change_avatar").resizable().frame(width: 40,height: 40)
                     }.frame(width: 135, height: 135)
                         .padding(.top, 30).padding(.bottom, 24)
@@ -41,7 +45,14 @@ struct IeujanEditInfo: View {
                     FeqocnButton(feqocnText: "Save", action: {}).padding(.vertical, 20)
                 }
             }.padding()
-        }.navigationBarHidden(true).enableInjection()
+        }.navigationBarHidden(true).onTapGesture {
+            ieujanNameFocus = false
+            ieujanAboutMeFocus = false
+        }.onAppear{
+            ieujanUserName = userVM.currentUser?.feruyqCawdUserName ?? ""
+            ieujanAboutMe = userVM.currentUser?.feruyqCawdAboutMe ?? ""
+            ieujanMyAvatar = userVM.currentUser?.feruyqCawdAvatar ?? "vnzwa_default_avatar"
+        }
     }
 }
 
