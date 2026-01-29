@@ -46,12 +46,9 @@ struct AwicnalWnvTopBar<Actions: View>: View {
                 awicanlActions()
             }.frame(height: 40, alignment: .leading)
             
-        }.frame(height: 40)
+        }.frame(maxWidth: .infinity)
         .padding(.horizontal, 20)
         .padding(.top, 16)
     }
 }
 
-#Preview {
-    AwicnalWnvTopBar()
-}

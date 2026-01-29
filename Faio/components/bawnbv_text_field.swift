@@ -17,6 +17,7 @@ struct BawnbvTextField: View {
     var height: CGFloat = 52
     var verticalPadding: CGFloat = 16
     var cornerRadius: CGFloat = 20
+    var keyboardSendAction: SubmitLabel = .return
 
     var body: some View {
         TextField("", text: $text)
@@ -28,6 +29,7 @@ struct BawnbvTextField: View {
                         Color(red: 129/255, green: 129/255, blue: 130/255)
                     )
             }
+            .submitLabel(keyboardSendAction)
             .focused($isFocused)
             .font(.system(size: 16))          // 输入文字字体
             .tint(.black)

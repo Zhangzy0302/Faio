@@ -55,7 +55,3 @@ struct IeujanEditInfo: View {
         }
     }
 }
-
-#Preview {
-    IeujanEditInfo()
-}

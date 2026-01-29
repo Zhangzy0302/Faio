@@ -74,18 +74,23 @@ struct FaioHUDView: View {
 
             // Loading
             if hud.isLoading {
+                // 弹窗内容
                 VStack(spacing: 12) {
                     ProgressView()
                         .progressViewStyle(.circular)
                         .scaleEffect(1.4)
+                        .tint(.white)
+
+                    Text("Loading...")
                         .foregroundColor(.white)
-                    Text("loading...").foregroundColor(.white)
-                }.padding(.horizontal, 24)
-                    .padding(.vertical, 20)
-                    .background(
+                }
+                .padding(.horizontal, 24)
+                .padding(.vertical, 20)
+                .background(
                     RoundedRectangle(cornerRadius: 20)
                         .fill(.black.opacity(0.8))
-                )
+                        .frame(width: 100, height: 100)
+                            .clipped())
                 
             }
 

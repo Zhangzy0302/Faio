@@ -28,9 +28,9 @@ struct FaioApp: App {
                 .environmentObject(commentVM)
                 .onAppear{
                     FaioStorageManager.shared.initializeAllDefaults()
-                    userVM.loadLoginUser()
+                    
                     workVM.getAllWorks()
-                    chatVM.getMyChatRooms()
+                    chatVM.getMyChatRoomsNotBlock()
                 }.overlay {
                     FaioHUDView()
                     }

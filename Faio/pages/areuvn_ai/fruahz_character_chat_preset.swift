@@ -28,6 +28,7 @@ struct FruahzCharacterChatPreset: View {
     @FocusState private var fruzhInputIsFocus_2: Bool
     
     @State private var baniznzShowNoDiamond = false
+    @EnvironmentObject var userVM: FaioUserViewModel
     
     var body: some View {
         ZStack(alignment: .top) {
@@ -55,6 +56,16 @@ struct FruahzCharacterChatPreset: View {
                         }
                         
                         Button(action: {
+                            if(fruzhSeletedCharacter.isEmpty || fruzhzChatDirection.isEmpty){
+                                FaioHUD.error("Please select movie character information and chat direction")
+                                return
+                            }
+                            if(fruzhInputMoive.isEmpty || fruzhInputCharacterName.isEmpty){
+                                FaioHUD.error("Please enter the movie character's experience and character name")
+                            }
+                            if(userVM.currentUser?.feruyqCawdWalletBalance ?? 0 > 600){
+                                appPath.append(AppRoute.aiChatRoom(character: fruzhSeletedCharacter, chatDirection: fruzhSeletedDirection))
+                            }
                             baniznzShowNoDiamond = true
                         }){
                             HStack(spacing: 8) {

@@ -14,8 +14,8 @@ struct FeruyqCawdUer: Codable, Identifiable, Equatable {
     var feruyqCawdFans: [Int]
     var feruyqCawdBlacklist: [Int]
     var feruyqCawdWalletBalance: Int
-    
     var feruyqCawdLikeWorks: [Int]
+    var feruyqCawdIsDeleted: Bool
     
     // MARK: - Identifiable
     var id: Int {feruyqCawdUserId}
@@ -34,12 +34,19 @@ struct WeianzVenvnWork: Codable, Identifiable, Equatable {
 
 struct CBawialBMeiComment: Codable, Identifiable, Equatable {
     
-    let cBawialBMeiCommentId: Int
+    let id: UUID = UUID()
+    
+    var cBawialBMeiCommentWorkId: Int
     var cBawialBMeiCommentUserId: Int
     var cBawialBMeiCommentText: String
     var cBawialBMeiDate: Date
     
-    var id: Int { cBawialBMeiCommentId }
+    enum CodingKeys: String, CodingKey {
+        case cBawialBMeiCommentWorkId
+        case cBawialBMeiCommentUserId
+        case cBawialBMeiCommentText
+        case cBawialBMeiDate
+    }
 }
 
 struct CneakzUwyahChatRoom: Codable, Identifiable, Equatable {
@@ -49,16 +56,24 @@ struct CneakzUwyahChatRoom: Codable, Identifiable, Equatable {
     var cneakzUwyahLastSendMsg: String
     var cneakzUwyahLastSendTime: Date
     var cneakzUwyahUnreadCount: Int
+    var cneakzUwyahIsDeleted: Bool
     
     var id: Int{ cneakzUwyahRoomId }
 }
 
 struct NwuzawiGhrdcjsMessage: Codable, Identifiable, Equatable {
+
+    let id: UUID = UUID()
     
-    let nwuzawiGhrdcjsMsgId: Int
+    var nuwzawiGhrdcjsRoomId: Int
     var nwuzawiGhrdcjsSendUserId: Int
     var nwuzawiGhrdcjsTextMsg: String
     var nwuzawiGhrdcjsDate: Date
-    
-    var id: Int { nwuzawiGhrdcjsMsgId }
+
+    enum CodingKeys: String, CodingKey {
+        case nuwzawiGhrdcjsRoomId
+        case nwuzawiGhrdcjsSendUserId
+        case nwuzawiGhrdcjsTextMsg
+        case nwuzawiGhrdcjsDate
+    }
 }

@@ -47,9 +47,12 @@ private extension ZwnagIreujImage {
 
     @ViewBuilder
     func buildImage() -> some View {
+        if(zwnagIreujImageUrl.isEmpty){
+            placeholderView()
+        }
 
         // asset
-        if !isLocalFilePath(zwnagIreujImageUrl) {
+        else if !isLocalFilePath(zwnagIreujImageUrl) {
 
             Image(zwnagIreujImageUrl)
                 .resizable()
@@ -67,7 +70,7 @@ private extension ZwnagIreujImage {
         // 兜底（非常重要）
         else {
 
-            placeholderView()
+            
         }
     }
 

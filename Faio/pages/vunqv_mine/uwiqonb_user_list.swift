@@ -18,20 +18,52 @@ struct UwiqonbUserList: View {
                 AwicnalWnvTopBar(awicanlCenterTitle: "Follow")
                 ScrollView {
                     LazyVStack {
-                        HStack {
-                            HStack(spacing: 13) {
-                                Circle().frame(width: 60, height: 60)
-                                Text("wjcaa")
-                                    .font(.system(size: 16))
-                                    .fontWeight(.semibold)
-                                    .foregroundColor(.white)
+                        ForEach(uwiqnvListType == .blacklist ?
+                                userVM.currentUser!.feruyqCawdBlacklist : uwiqnvListType == .following ?
+                                userVM.currentUser!.feruyqCawdFollowing : userVM.currentUser!.feruyqCawdFans, id: \.self){ uid in
+                            UwiqonbUserRow(uwiqonUserId: uid){
+                                FeqocnButton(feqocnText: "Follow", feqocnWidth: 76, feqocnHeight: 24, feqocnBgColorIsOrange: true, feqocnBgColor: Color(red: 85/255, green: 85/255,blue: 85/255), feqocnFontSize: 11, feqocnFontWeight: .semibold, feqocnFontColor: .white, action: {
+                                    
+                                })
                             }
-                            Spacer()
-                            FeqocnButton(feqocnText: "Follow", action: {})
-                        }.padding(.horizontal, 20)
+                            
+                        }
                     }.padding(.vertical, 20)
                 }
             }
         }.navigationBarHidden(true)
+    }
+    
+    struct UwiqonbUserRow<Button: View>: View {
+
+        let uwiqonUserId: Int
+        let uwionButton: () -> Button
+
+        init(
+            uwiqonUserId: Int,
+            @ViewBuilder uwionButton: @escaping () -> Button
+        ) {
+            self.uwiqonUserId = uwiqonUserId
+            self.uwionButton = uwionButton
+        }
+
+        var body: some View {
+            HStack {
+                HStack(spacing: 13) {
+                    Circle()
+                        .frame(width: 60, height: 60)
+
+                    Text("wjcaa")
+                        .font(.system(size: 16))
+                        .fontWeight(.semibold)
+                        .foregroundColor(.white)
+                }
+
+                Spacer()
+
+                uwionButton()
+            }
+            .padding(.horizontal, 20)
+        }
     }
 }
