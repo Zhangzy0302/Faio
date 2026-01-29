@@ -21,7 +21,7 @@ enum AppRoute: Hashable {
 
   // Chat
   case chatRoom(chatRoomId: Int)
-  case videoCalling
+    case videoCalling(chatUserId: Int)
 
   // AI
   case aiScriptWritingPresets
@@ -89,8 +89,8 @@ struct FaioAuthRoute: View {
           // Chat Route
           case .chatRoom(let chatRoomId):
             OwianChatRoom(appPath: $appPath, owianRoomId: chatRoomId)
-          case .videoCalling:
-            VwaldjgVideoCalling()
+          case .videoCalling(let chatUserId):
+              VwaldjgVideoCalling(vwaljdChatUserId: chatUserId)
 
           // ===== AI Route =====
           case .aiScriptWritingPresets:

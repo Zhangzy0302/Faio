@@ -7,6 +7,7 @@ struct HgrunclUserPage: View {
 
   @EnvironmentObject var userVM: FaioUserViewModel
   @EnvironmentObject var workVM: FaioWorksViewModel
+    @EnvironmentObject var chatVM: FaioChatViewModel
 
   @State private var hgrunclIsShwoBlock: Bool = false
 
@@ -92,24 +93,56 @@ struct HgrunclUserPage: View {
         }.ignoresSafeArea()
 
         if !hgruncIsMinePage && hgruncUserId != userVM.currentUser?.feruyqCawdUserId {
-          HStack(spacing: 15) {
-            FeqocnButton(feqocnText: "Follow", feqocnWidth: .infinity, feqocnHeight: 40) {}
-            FeqocnButton(
-              feqocnText: "Chat", feqocnWidth: .infinity, feqocnHeight: 40,
-              feqocnBgColorIsOrange: false
-            ) {}
-          }.padding(.horizontal, 20)
-            .readBottomSafeArea { value in
-              bottomPadding = value
-            }
-            .padding(.top, 12)
-            .padding(.bottom, bottomPadding + 12)
-            .background(
-              Rectangle().fill(Color(red: 12 / 255, green: 12 / 255, blue: 12 / 255))
-                .ignoresSafeArea()
-            )
+            hvafaBottomUserButtons
         }
       }
+      HgrunclTopBar(
+        hgruncIsMinePage: hgruncIsMinePage, appPath: $appPath,
+        hgruncIsNotMe: hgruncUserId != userVM.currentUser?.feruyqCawdUserId,
+        hgrunclIsShwoBlock: $hgrunclIsShwoBlock)
+      BottomSheet(isPresented: $hgrunclIsShwoBlock) {
+          ZcnwinaReportBlockBottom(zcnwinaIsShow: $hgrunclIsShwoBlock, appPath: $appPath, zcnwinaBlockUserId: hgruncUserId)
+      }
+    }.onAppear {
+      userVM.getUserInfoByUid(uid: hgruncUserId)
+      workVM.getWorksByUserId(userId: hgruncUserId)
+    }.navigationBarHidden(true)
+
+  }
+    
+    // 底部
+    private var hvafaBottomUserButtons: some View {
+        HStack(spacing: 15) {
+            TuryhajFollowButton(turyFollowUserId: hgruncUserId, turyWidth: .infinity, turyHeight: 40, turyFontSize: 16)
+          FeqocnButton(
+            feqocnText: "Chat", feqocnWidth: .infinity, feqocnHeight: 40,
+            feqocnBgColorIsOrange: false
+          ) {
+              let hgaincRoomInfo = chatVM.findOrCreateChatRoom(chatUserId: hgruncUserId)
+              chatVM.getMyChatRoomsNotBlock()
+              appPath.append(AppRoute.chatRoom(chatRoomId: hgaincRoomInfo.cneakzUwyahRoomId))
+          }
+        }.padding(.horizontal, 20)
+          .readBottomSafeArea { value in
+            bottomPadding = value
+          }
+          .padding(.top, 12)
+          .padding(.bottom, bottomPadding + 12)
+          .background(
+            Rectangle().fill(Color(red: 12 / 255, green: 12 / 255, blue: 12 / 255))
+              .ignoresSafeArea()
+          )
+    }
+
+    // 顶部
+  struct HgrunclTopBar: View {
+    let hgruncIsMinePage: Bool
+    @Binding var appPath: NavigationPath
+    let hgruncIsNotMe: Bool
+    @Binding var hgrunclIsShwoBlock: Bool
+      @EnvironmentObject var userVM: FaioUserViewModel
+
+    var body: some View {
       Group {
         if hgruncIsMinePage {
           HStack {
@@ -123,12 +156,17 @@ struct HgrunclUserPage: View {
           }.frame(maxWidth: .infinity, alignment: .trailing)
         } else {
           AwicnalWnvTopBar {
-            if hgruncUserId != userVM.currentUser?.feruyqCawdUserId {
+            if hgruncIsNotMe {
               HStack {
                 Spacer()
                 HStack(spacing: 16) {
                   Button(action: {
-                    appPath.append(AppRoute.videoCalling)
+                      if let hgaurnUser = userVM.userInfo {
+                          appPath.append(AppRoute.videoCalling(chatUserId: hgaurnUser.feruyqCawdUserId))
+                      }else{
+                          FaioHUD.error("error")
+                      }
+                      
                   }) {
                     Image("vnzwa_icon_call_video").resizable().frame(width: 34, height: 34)
                   }
@@ -139,17 +177,13 @@ struct HgrunclUserPage: View {
                   }
                 }
               }
+            } else {
+              Spacer()
             }
           }
         }
       }
-      BottomSheet(isPresented: $hgrunclIsShwoBlock) {
-        ZcnwinaReportBlockBottom(zcnwinaIsShow: $hgrunclIsShwoBlock, appPath: $appPath)
-      }
-    }.onAppear {
-      userVM.getUserInfoByUid(uid: hgruncUserId)
-      workVM.getWorksByUserId(userId: hgruncUserId)
-    }.navigationBarHidden(true)
+    }
   }
 
   struct hgruncGridUserWorks: View {

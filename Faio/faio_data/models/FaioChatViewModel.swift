@@ -65,7 +65,7 @@ final class FaioChatViewModel: ObservableObject {
   }
 
   // 查找或创建聊天室
-  func findOrCreateChatRoom(chatUserId: Int) -> CneakzUwyahChatRoom? {
+  func findOrCreateChatRoom(chatUserId: Int) -> CneakzUwyahChatRoom {
     let loginUserId = storage.getCurrentUserId()
     // 查找聊天室是否已存在
     let chatRoom: CneakzUwyahChatRoom? = storage.getChatRooms().first(where: {

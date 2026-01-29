@@ -30,6 +30,7 @@ struct BawnbvTextField: View {
                     )
             }
             .submitLabel(keyboardSendAction)
+            .textInputAutocapitalization(.never)
             .focused($isFocused)
             .font(.system(size: 16))          // 输入文字字体
             .tint(.black)

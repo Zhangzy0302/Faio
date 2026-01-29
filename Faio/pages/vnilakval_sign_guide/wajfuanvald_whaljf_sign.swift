@@ -115,7 +115,6 @@ struct WalfuancvaAvajSign: View {
                 FaioHUD.error("Inconsistent repeated password input")
                 return
               }
-
             }
             Task {
               FaioHUD.showLoading()

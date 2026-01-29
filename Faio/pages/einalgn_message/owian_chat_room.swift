@@ -13,6 +13,8 @@ struct OwianChatRoom: View {
 
   @EnvironmentObject var chatVM: FaioChatViewModel
   @EnvironmentObject var userVM: FaioUserViewModel
+    
+    @State var owianBlockUserId: Int = 3366
 
   var body: some View {
     ZStack(alignment: .top) {
@@ -21,8 +23,8 @@ struct OwianChatRoom: View {
         VStack {
           AwicnalWnvTopBar {
             HStack(spacing: 12) {
-              Circle().frame(width: 40)
-              Text("Lyric")
+                ZwnagIreujImage(zwnagIreujImageUrl: chatUserInfo.feruyqCawdAvatar, zwnagIreujWidth: 40, zwnagIreujHeight: 40, zwnagIreujIsCircle: true)
+                Text(chatUserInfo.feruyqCawdUserName)
                 .font(.system(size: 16))
                 .fontWeight(.semibold)
                 .foregroundColor(.white)
@@ -30,11 +32,12 @@ struct OwianChatRoom: View {
             Spacer()
             HStack(spacing: 16) {
               Button(action: {
-                appPath.append(AppRoute.videoCalling)
+                  appPath.append(AppRoute.videoCalling(chatUserId: chatUserInfo.feruyqCawdUserId))
               }) {
                 Image("vnzwa_icon_call_video").resizable().frame(width: 34, height: 34)
               }
               Button(action: {
+                  owianBlockUserId = chatUserInfo.feruyqCawdUserId
                 owianIsShowBlock = true
               }) {
                 Image("vnzwa_icon_more").resizable().frame(width: 40, height: 40)
@@ -66,9 +69,12 @@ struct OwianChatRoom: View {
       }
 
       BottomSheet(isPresented: $owianIsShowBlock) {
-        ZcnwinaReportBlockBottom(zcnwinaIsShow: $owianIsShowBlock, appPath: $appPath)
+          ZcnwinaReportBlockBottom(zcnwinaIsShow: $owianIsShowBlock, appPath: $appPath, zcnwinaBlockUserId: owianBlockUserId)
       }
     }.navigationBarHidden(true)
+          .onTapGesture {
+              owianInputIsFocus = false
+          }
 
   }
 
@@ -125,7 +131,6 @@ struct FaioChatMessage: View {
                 .font(.system(size: 16))
                 .foregroundColor(.black)
                 .padding(12)
-                .frame(maxWidth: 220)
                 .background(bubbleBackground)
         }
 

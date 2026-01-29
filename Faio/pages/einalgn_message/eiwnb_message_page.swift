@@ -19,7 +19,7 @@ struct EiwnbMessagePage: View {
       }.padding(.leading, 20).padding(.top, 16).padding(.bottom, 30)
 
       ScrollView {
-        LazyVStack {
+        LazyVStack(spacing: 30) {
           ForEach(eiwnbChatVM.myChatRooms) { chatRoom in
             Button(action: {
               appPath.append(AppRoute.chatRoom(chatRoomId: chatRoom.cneakzUwyahRoomId))
@@ -41,10 +41,9 @@ struct EiwnbMessagePage: View {
                       .fontWeight(.regular).foregroundColor(.white.opacity(0.5))
                   }
                 }
-
                 Spacer()
                 VStack {
-                  Text("2 mins ago")
+                  Text(chatRoom.cneakzUwyahLastSendTime.toString())
                     .font(.system(size: 10))
                     .foregroundColor(.white.opacity(0.4))
                 }
@@ -54,6 +53,8 @@ struct EiwnbMessagePage: View {
           }
         }
       }
+    }.onAppear {
+      eiwnbChatVM.getMyChatRoomsNotBlock()
     }
   }
 }

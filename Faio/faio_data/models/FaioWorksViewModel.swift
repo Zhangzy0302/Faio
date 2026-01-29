@@ -42,4 +42,8 @@ final class FaioWorksViewModel: ObservableObject {
   func getUserByCreatorId(creatorId: Int) -> FeruyqCawdUer? {
     return storage.getUserById(userId: creatorId)
   }
+    
+    func addNewWork(){
+        
+    }
 }

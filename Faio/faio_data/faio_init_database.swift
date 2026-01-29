@@ -302,6 +302,15 @@ extension FaioStorageManager {
 
     return newRoom
   }
+  // 更新聊天室
+  func updateChatRoom(roomId: Int, update: (CneakzUwyahChatRoom) -> CneakzUwyahChatRoom) {
+    var chatRooms: [CneakzUwyahChatRoom] = getChatRooms()
+    guard let index = chatRooms.firstIndex(where: { $0.cneakzUwyahRoomId == roomId }) else {
+      return
+    }
+    chatRooms[index] = update(chatRooms[index])
+    save(chatRooms, forKey: Keys.chatRooms)
+  }
 
   private func initializeMessagesIfNeeded() {
     guard storage.data(forKey: Keys.messages) == nil else { return }

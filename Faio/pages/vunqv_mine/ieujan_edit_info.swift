@@ -1,4 +1,5 @@
 import SwiftUI
+import PhotosUI
 
 struct IeujanEditInfo: View {
     @State private var ieujanUserName: String = ""
@@ -8,6 +9,10 @@ struct IeujanEditInfo: View {
     @FocusState private var ieujanAboutMeFocus: Bool
     
     @State private var ieujanMyAvatar: String = "vnzwa_default_avatar"
+    
+    @State private var selectedAvatarItem: PhotosPickerItem?
+    @State private var selectedAvatarImage: UIImage?
+    @State private var showAvatarPicker = false
     
     @EnvironmentObject var userVM: FaioUserViewModel
     
@@ -26,6 +31,10 @@ struct IeujanEditInfo: View {
                         Image("vnzwa_change_avatar").resizable().frame(width: 40,height: 40)
                     }.frame(width: 135, height: 135)
                         .padding(.top, 30).padding(.bottom, 24)
+                        .onTapGesture {
+                            // 触发 PhotosPicker
+                            showAvatarPicker = true
+                        }
                     
                     VStack(alignment: .leading, spacing: 12){
                         Text("Name")
@@ -42,9 +51,34 @@ struct IeujanEditInfo: View {
                         BawnbvTextField(placeholder: "Please enter", text: $ieujanAboutMe, isFocused: $ieujanAboutMeFocus, height: 128)
                     }
                     Spacer()
-                    FeqocnButton(feqocnText: "Save", action: {}).padding(.vertical, 20)
+                    FeqocnButton(feqocnText: "Save", action: {
+                        if(ieujanUserName.isEmpty) {
+                            FaioHUD.error("The username cannot be empty")
+                            return
+                        }
+                        userVM.editUserInfo(name: ieujanUserName, aboutMe: ieujanAboutMe, avatar: ieujanMyAvatar)
+                        FaioHUD.success("User profile edited successfully")
+                    }).padding(.vertical, 20)
+                }.padding(.horizontal, 20)
+            }
+        }.photosPicker(
+            isPresented: $showAvatarPicker,
+            selection: $selectedAvatarItem,
+            matching: .images
+        )
+        .onChange(of: selectedAvatarItem) { item in
+            guard let item else { return }
+            
+            Task {
+                if let data = try? await item.loadTransferable(type: Data.self),
+                   let image = UIImage(data: data) {
+                    
+                    // 1️⃣ 保存到本地
+                    if let localPath = LocalImageManager.saveImage(image) {
+                        ieujanMyAvatar = localPath   // ✅ 赋值给头像
+                    }
                 }
-            }.padding()
+            }
         }.navigationBarHidden(true).onTapGesture {
             ieujanNameFocus = false
             ieujanAboutMeFocus = false

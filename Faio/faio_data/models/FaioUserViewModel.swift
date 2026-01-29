@@ -49,6 +49,80 @@ final class FaioUserViewModel: ObservableObject {
     loadLoginUser()
   }
 
+  // 切换用户状态
+  func toggleUserIsDeleted() {
+    storage.updateUser(uid: currentUser!.feruyqCawdUserId) { user in
+      var newUser: FeruyqCawdUer = user
+      newUser.feruyqCawdIsDeleted = !newUser.feruyqCawdIsDeleted
+      return newUser
+    }
+
+    loadLoginUser()
+  }
+
+  // 切换拉黑状态
+  func toggleUserIsBlocked(blockUserId: Int) {
+    storage.updateUser(uid: currentUser!.feruyqCawdUserId) { user in
+      var newUser: FeruyqCawdUer = user
+      if newUser.feruyqCawdBlacklist.contains(blockUserId) {
+        newUser.feruyqCawdBlacklist.removeAll { $0 == blockUserId }
+      } else {
+        newUser.feruyqCawdBlacklist.append(blockUserId)
+      }
+
+      return newUser
+    }
+
+    loadLoginUser()
+  }
+
+  // 切换是否喜欢作品
+  func toggleWorkIsLiked(workId: Int) {
+    storage.updateUser(uid: currentUser!.feruyqCawdUserId) { user in
+      var newUser: FeruyqCawdUer = user
+      if newUser.feruyqCawdLikeWorks.contains(workId) {
+        newUser.feruyqCawdLikeWorks.removeAll { $0 == workId }
+      } else {
+        newUser.feruyqCawdLikeWorks.append(workId)
+      }
+      return newUser
+    }
+    loadLoginUser()
+  }
+
+  // 切换关注状态
+  func toggleUserIsFollowed(followUserId: Int) {
+    guard let currentUser = currentUser else { return }
+
+    // 1️⃣ 更新当前用户
+    storage.updateUser(uid: currentUser.feruyqCawdUserId) { user in
+      var newUser = user
+
+      if newUser.feruyqCawdFollowing.contains(followUserId) {
+        newUser.feruyqCawdFollowing.removeAll { $0 == followUserId }
+      } else {
+        newUser.feruyqCawdFollowing.append(followUserId)
+      }
+
+      return newUser
+    }
+
+    // 2️⃣ 更新被关注用户
+    storage.updateUser(uid: followUserId) { user in
+      var newFollowUser = user
+
+      if newFollowUser.feruyqCawdFans.contains(currentUser.feruyqCawdUserId) {
+        newFollowUser.feruyqCawdFans.removeAll { $0 == currentUser.feruyqCawdUserId }
+      } else {
+        newFollowUser.feruyqCawdFans.append(currentUser.feruyqCawdUserId)
+      }
+
+      return newFollowUser
+    }
+
+    loadLoginUser()
+  }
+
   // 修改用户信息
   func editUserInfo(name: String, aboutMe: String, avatar: String) {
     storage.updateUser(uid: currentUser!.feruyqCawdUserId) { user in
@@ -69,7 +143,7 @@ final class FaioUserViewModel: ObservableObject {
       newUser.feruyqCawdWalletBalance = newUser.feruyqCawdWalletBalance + diamond
       return newUser
     }
-    
+
     loadLoginUser()
   }
 }

@@ -24,7 +24,6 @@ struct FeqocnButton: View {
             Text(feqocnText)
                 .font(.system(size: feqocnFontSize, weight: feqocnFontWeight))
                 .foregroundColor(feqocnFontColor)
-                    .padding()
                      .frame(maxWidth: feqocnWidth, maxHeight: feqocnHeight)
                      .background(ZStack {
                          if feqocnBgColorIsOrange {

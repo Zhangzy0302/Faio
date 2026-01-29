@@ -1,10 +1,15 @@
 import SwiftUI
 
 struct VwaldjgVideoCalling: View {
+    let vwaljdChatUserId: Int
     @Environment(\.dismiss) var dismiss
+    @EnvironmentObject var userVM: FaioUserViewModel
     
     var body: some View {
         ZStack {
+            if let vwalUserInfo = userVM.userInfo {
+                ZwnagIreujImage(zwnagIreujImageUrl: vwalUserInfo.feruyqCawdAvatar, zwnagIreujWidth: .infinity, zwnagIreujHeight: .infinity).ignoresSafeArea()
+            }
             Rectangle().fill(.black.opacity(0.5)).ignoresSafeArea()
             VStack {
                 Spacer()
@@ -22,5 +27,8 @@ struct VwaldjgVideoCalling: View {
                 }.padding(.bottom, 60)
             }
         }.navigationBarHidden(true)
+            .onAppear{
+                userVM.getUserInfoByUid(uid: vwaljdChatUserId)
+            }
     }
 }

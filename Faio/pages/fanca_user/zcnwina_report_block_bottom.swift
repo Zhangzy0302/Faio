@@ -3,6 +3,8 @@ import SwiftUI
 struct ZcnwinaReportBlockBottom: View {
   @Binding var zcnwinaIsShow: Bool
   @Binding var appPath: NavigationPath
+    let zcnwinaBlockUserId: Int
+    @EnvironmentObject var userVM: FaioUserViewModel
 
   var body: some View {
     VStack(spacing: 20) {
@@ -16,7 +18,7 @@ struct ZcnwinaReportBlockBottom: View {
         feqocnText: "Shield", feqocnBgColorIsOrange: false, feqocnBgColor: .black,
         feqocnFontColor: .white,
         action: {
-
+            userVM.toggleUserIsBlocked(blockUserId: zcnwinaBlockUserId)
         })
       FeqocnButton(
         feqocnText: "Cancel", feqocnBgColorIsOrange: false,
