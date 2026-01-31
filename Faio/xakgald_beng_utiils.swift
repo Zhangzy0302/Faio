@@ -8,35 +8,35 @@
 import SwiftUI
 
 enum LocalImageManager {
-    static func saveImage(_ image: UIImage) -> String? {
-        let fileName = UUID().uuidString + ".jpg"
-        let data = image.jpegData(compressionQuality: 0.9)
-        
-        guard let data else { return nil }
-        
-        let documentsURL = FileManager.default.urls(
-            for: .documentDirectory,
-            in: .userDomainMask
-        ).first!
-        
-        let fileURL = documentsURL.appendingPathComponent(fileName)
-        
-        do {
-            try data.write(to: fileURL)
-            return fileURL.path   // ✅ 返回 String，正好给 ieujanMyAvatar 用
-        } catch {
-            print("Save image error:", error)
-            return nil
-        }
+  static func saveImage(_ image: UIImage) -> String? {
+    let fileName = UUID().uuidString + ".jpg"
+    let data = image.jpegData(compressionQuality: 0.9)
+
+    guard let data else { return nil }
+
+    let documentsURL = FileManager.default.urls(
+      for: .documentDirectory,
+      in: .userDomainMask
+    ).first!
+
+    let fileURL = documentsURL.appendingPathComponent(fileName)
+
+    do {
+      try data.write(to: fileURL)
+      return fileURL.path  // ✅ 返回 String，正好给 ieujanMyAvatar 用
+    } catch {
+      print("Save image error:", error)
+      return nil
     }
+  }
 }
 
 extension Date {
-    func toString(_ format: String = "yyyy-MM-dd HH:mm") -> String {
-        let formatter = DateFormatter()
-        formatter.dateFormat = format
-        return formatter.string(from: self)
-    }
+  func toString(_ format: String = "yyyy-MM-dd HH:mm") -> String {
+    let formatter = DateFormatter()
+    formatter.dateFormat = format
+    return formatter.string(from: self)
+  }
 }
 
 extension View {
@@ -127,5 +127,28 @@ struct BottomSheet<Content: View>: View {
       }
 
     }
+  }
+}
+
+// 空数据占位
+struct XgkgaldEmptyDataPlaceholder: View {
+  let topPadding: CGFloat
+  var body: some View {
+    HStack {
+      Spacer()
+      VStack {
+        Image("vnzwa_no_data")
+          .resizable()
+          .frame(width: 115, height: 115)
+        Text("There's no content yet.")
+          .font(.system(size: 14))
+          .foregroundColor(.white.opacity(0.5))
+          .padding(.vertical, 8)
+
+      }
+      Spacer()
+    }.padding(.bottom, 20)
+      .padding(.top, topPadding)
+
   }
 }

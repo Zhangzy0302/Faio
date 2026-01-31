@@ -10,12 +10,13 @@ final class FaioStorageManager {
 
   // MARK: - Keys
   private enum Keys {
-    static let users = "feruyqCawdUsers"
-    static let works = "weianzVenvnWorks"
-    static let comments = "cBawialBMeiComments"
-    static let chatRooms = "cneakzUwyahChatRooms"
-    static let messages = "nwuzawiGhrdcjsMessages"
-    static let currentUserId = "faioCurrentUserId"
+    static let users: String = "feruyqCawdUsers"
+    static let works: String = "weianzVenvnWorks"
+    static let comments: String = "cBawialBMeiComments"
+    static let chatRooms: String = "cneakzUwyahChatRooms"
+    static let messages: String = "nwuzawiGhrdcjsMessages"
+    static let currentUserId: String = "faioCurrentUserId"
+    static let moiveScriptHistory: String = "moiveScriptHistory"
   }
 }
 
@@ -27,6 +28,7 @@ extension FaioStorageManager {
     initializeCommentsIfNeeded()
     initializeChatRoomsIfNeeded()
     initializeMessagesIfNeeded()
+    initializeMoiveScriptHistoryIfNeeded()
   }
 
   private func initializeUsersIfNeeded() {
@@ -147,6 +149,13 @@ extension FaioStorageManager {
     var users = getUsers()
     guard let index = users.firstIndex(where: { $0.feruyqCawdUserId == uid }) else { return }
     users[index] = update(users[index])
+    saveUsers(users)
+  }
+
+  // add user
+  func addUser(user: FeruyqCawdUer) {
+    var users: [FeruyqCawdUer] = getUsers()
+    users.append(user)
     saveUsers(users)
   }
 
@@ -326,6 +335,43 @@ extension FaioStorageManager {
     var messages = load([NwuzawiGhrdcjsMessage].self, forKey: Keys.messages, default: [])
     messages.append(msg)
     save(messages, forKey: Keys.messages)
+  }
+}
+
+// moive
+extension FaioStorageManager {
+  private func initializeMoiveScriptHistoryIfNeeded() {
+    guard storage.data(forKey: Keys.moiveScriptHistory) == nil else { return }
+    save([MvjqyqzMvjqyqzHistory](), forKey: Keys.moiveScriptHistory)
+  }
+
+  func getMoiveScriptHistory() -> [MvjqyqzMvjqyqzHistory] {
+    load([MvjqyqzMvjqyqzHistory].self, forKey: Keys.moiveScriptHistory, default: [])
+  }
+
+  func addMoiveScriptHistory(_ history: MvjqyqzMvjqyqzHistory) {
+    var histories = load([MvjqyqzMvjqyqzHistory].self, forKey: Keys.moiveScriptHistory, default: [])
+    histories.append(history)
+    save(histories, forKey: Keys.moiveScriptHistory)
+  }
+
+  func deleteMoiveScriptHistory(_ workId: UUID) {
+    var histories: [MvjqyqzMvjqyqzHistory] = load(
+      [MvjqyqzMvjqyqzHistory].self, forKey: Keys.moiveScriptHistory, default: [])
+    histories.removeAll {
+      $0.id == workId
+    }
+    save(histories, forKey: Keys.moiveScriptHistory)
+  }
+
+  // 根据用户Id删除所有
+  func deleteMoiveScriptHistoryByUserId(_ userId: Int) {
+    var histories: [MvjqyqzMvjqyqzHistory] = load(
+      [MvjqyqzMvjqyqzHistory].self, forKey: Keys.moiveScriptHistory, default: [])
+    histories.removeAll {
+      $0.mvjqyqzHistoryUserId == userId
+    }
+    save(histories, forKey: Keys.moiveScriptHistory)
   }
 }
 

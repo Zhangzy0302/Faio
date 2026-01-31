@@ -11,24 +11,40 @@ struct UwiqonbUserList: View {
 
   @EnvironmentObject var userVM: FaioUserViewModel
 
+  private var uwiqonbzTitle: String {
+    switch uwiqnvListType {
+    case .following:
+      return "Follow"
+    case .fans:
+      return "Fans"
+    case .blacklist:
+      return "Blacklist"
+    }
+  }
+
   var body: some View {
     ZStack(alignment: .top) {
       VawinvTheme.FaioColor.backgroundBlack.ignoresSafeArea()
       VStack {
-        AwicnalWnvTopBar(awicanlCenterTitle: "Follow")
-        ScrollView {
-          LazyVStack {
-            ForEach(
-              uwiqonbzUserList,
-              id: \.self
-            ) { uid in
-              UwiqonbUserRow(uwiqonUserId: uid) {
-                UwwiqActionButton(uid: uid, uwiqnvListType: uwiqnvListType)
-              }
+        AwicnalWnvTopBar(awicanlCenterTitle: uwiqonbzTitle)
+        if uwiqonbzUserList.isEmpty {
+          XgkgaldEmptyDataPlaceholder(topPadding: 120)
+        } else {
+          ScrollView {
+            LazyVStack {
+              ForEach(
+                uwiqonbzUserList,
+                id: \.self
+              ) { uid in
+                UwiqonbUserRow(uwiqonUserId: uid) {
+                  UwwiqActionButton(uid: uid, uwiqnvListType: uwiqnvListType)
+                }
 
-            }
-          }.padding(.vertical, 20)
+              }
+            }.padding(.vertical, 20)
+          }
         }
+
       }
     }.navigationBarHidden(true)
   }
@@ -70,6 +86,8 @@ struct UwiqonbUserList: View {
     let uwiqonUserId: Int
     let uwionButton: () -> Button
 
+    @EnvironmentObject var userVM: FaioUserViewModel
+
     init(
       uwiqonUserId: Int,
       @ViewBuilder uwionButton: @escaping () -> Button
@@ -78,16 +96,24 @@ struct UwiqonbUserList: View {
       self.uwionButton = uwionButton
     }
 
+    var uwiqonUser: FeruyqCawdUer? {
+      return userVM.returnUserInfoById(userId: uwiqonUserId)
+    }
+
     var body: some View {
       HStack {
-        HStack(spacing: 13) {
-          Circle()
-            .frame(width: 60, height: 60)
+        if let uwqonczsUser: FeruyqCawdUer = uwiqonUser {
+          HStack(spacing: 13) {
+            ZwnagIreujImage(
+              zwnagIreujImageUrl: uwqonczsUser.feruyqCawdAvatar,
+              zwnagIreujWidth: 60, zwnagIreujHeight: 60, zwnagIreujIsCircle: true
+            )
 
-          Text("wjcaa")
-            .font(.system(size: 16))
-            .fontWeight(.semibold)
-            .foregroundColor(.white)
+            Text(uwqonczsUser.feruyqCawdUserName)
+              .font(.system(size: 16))
+              .fontWeight(.semibold)
+              .foregroundColor(.white)
+          }
         }
 
         Spacer()

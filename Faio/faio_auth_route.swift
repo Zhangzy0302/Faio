@@ -21,18 +21,20 @@ enum AppRoute: Hashable {
 
   // Chat
   case chatRoom(chatRoomId: Int)
-    case videoCalling(chatUserId: Int)
+  case videoCalling(chatUserId: Int)
 
   // AI
   case aiScriptWritingPresets
   case aiScriptWritingResult(theme: String, style: String, character: String, keywords: String)
   case aiCharacterChatPresets
-  case aiChatRoom(character: String, chatDirection: String)
+  case aiChatRoom(character: String, chatDirection: String, characterName: String)
+  case aiScriptHistory
 }
 
 struct FaioAuthRoute: View {
 
   @State private var appPath = NavigationPath()
+  @EnvironmentObject var userVM: FaioUserViewModel
 
   private let storage = FaioStorageManager.shared
 
@@ -40,75 +42,80 @@ struct FaioAuthRoute: View {
     NavigationStack(path: $appPath) {
 
       // 👇 占位根视图（不会真正显示）
-        Group{
-            let uid = storage.getCurrentUserId()
+      Group {
+        let uid = storage.getCurrentUserId()
 
-            if uid != 3366 {
-              // ✅ 已登录
-                BienajvfjWangrdNavPage(appPath: $appPath)
-            } else {
-              // ❌ 未登录
-                CnalgadGUwjGuidePage(canlAuthPath: $appPath)
-            }
+        if uid != 3366 {
+          // ✅ 已登录
+          BienajvfjWangrdNavPage(appPath: $appPath)
+        } else {
+          // ❌ 未登录
+          CnalgadGUwjGuidePage(canlAuthPath: $appPath)
+        }
+      }
+
+      // ===== App Route =====
+      .navigationDestination(for: AppRoute.self) { route in
+        switch route {
+        case .guiding:
+          CnalgadGUwjGuidePage(canlAuthPath: $appPath)
+
+        case .sign:
+          WalfuancvaAvajSign(appPath: $appPath)
+
+        case .agreementWeb(let webUrl):
+          PonvbnAgreementWeb(ponvbnWebUrl: webUrl)
+
+        case .main:
+          BienajvfjWangrdNavPage(appPath: $appPath)
+        // ===== User Route =====
+        case .userPage(let userId):
+          HgrunclUserPage(appPath: $appPath, hgruncUserId: userId, hgruncIsMinePage: false)
+        case .setting:
+          MwaldjReiDaSetting(appPath: $appPath)
+        case .editInfo:
+          IeujanEditInfo()
+        case .wallet:
+          GhueanWallet().environmentObject(userVM)
+            .environmentObject(IAPManager(userVM: userVM))
+        case .userList(let listType):
+          UwiqonbUserList(uwiqnvListType: listType)
+        case .reportPage:
+          NinzvnReportPage()
+
+        // ===== Work Route =====
+        case .postPage:
+          CnawmnirPostWork(appPath: $appPath)
+        case .workDetail(let workId):
+          RecnxdjWorkDetail(appPath: $appPath, recnxdjWorkId: workId)
+
+        // Chat Route
+        case .chatRoom(let chatRoomId):
+          OwianChatRoom(appPath: $appPath, owianRoomId: chatRoomId)
+        case .videoCalling(let chatUserId):
+          VwaldjgVideoCalling(vwaljdChatUserId: chatUserId)
+
+        // ===== AI Route =====
+        case .aiScriptWritingPresets:
+          BnainzcScriptWriting(appPath: $appPath)
+        case .aiScriptWritingResult(let theme, let style, let character, let keywords):
+          EuenxzScriptResults(
+            euenxzTheme: theme,
+            euenxzStyle: style,
+            euenxzCharacter: character,
+            euenxzKeyWords: keywords
+          )
+        case .aiCharacterChatPresets:
+          FruahzCharacterChatPreset(appPath: $appPath)
+        case .aiChatRoom(let character, let chatDirection, let characterName):
+          XwubaEvhhAiChat(
+            xwubaCharacter: character, xwubaChatDirection: chatDirection,
+            xwubaCharacterName: characterName)
+        case .aiScriptHistory:
+          NburanScriptHistory()
         }
 
-        // ===== App Route =====
-        .navigationDestination(for: AppRoute.self) { route in
-          switch route {
-          case .guiding:
-            CnalgadGUwjGuidePage(canlAuthPath: $appPath)
-
-          case .sign:
-            WalfuancvaAvajSign(appPath: $appPath)
-
-          case .agreementWeb(let webUrl):
-            PonvbnAgreementWeb(ponvbnWebUrl: webUrl)
-
-          case .main:
-            BienajvfjWangrdNavPage(appPath: $appPath)
-          // ===== User Route =====
-          case .userPage(let userId):
-            HgrunclUserPage(appPath: $appPath, hgruncUserId: userId, hgruncIsMinePage: false)
-          case .setting:
-            MwaldjReiDaSetting(appPath: $appPath)
-          case .editInfo:
-            IeujanEditInfo()
-          case .wallet:
-            GhueanWallet()
-          case .userList(let listType):
-            UwiqonbUserList(uwiqnvListType: listType)
-          case .reportPage:
-            NinzvnReportPage()
-
-          // ===== Work Route =====
-          case .postPage:
-            CnawmnirPostWork()
-          case .workDetail(let workId):
-            RecnxdjWorkDetail(appPath: $appPath, recnxdjWorkId: workId)
-
-          // Chat Route
-          case .chatRoom(let chatRoomId):
-            OwianChatRoom(appPath: $appPath, owianRoomId: chatRoomId)
-          case .videoCalling(let chatUserId):
-              VwaldjgVideoCalling(vwaljdChatUserId: chatUserId)
-
-          // ===== AI Route =====
-          case .aiScriptWritingPresets:
-            BnainzcScriptWriting(appPath: $appPath)
-          case .aiScriptWritingResult(let theme, let style, let character, let keywords):
-            EuenxzScriptResults(
-              euenxzTheme: theme,
-              euenxzStyle: style,
-              euenxzCharacter: character,
-              euenxzKeyWords: keywords
-            )
-          case .aiCharacterChatPresets:
-            FruahzCharacterChatPreset(appPath: $appPath)
-          case .aiChatRoom(let character, let chatDirection):
-            XwubaEvhhAiChat(xwubaCharacter: character, xwubaChatDirection: chatDirection)
-          }
-
-        }
+      }
 
     }
   }

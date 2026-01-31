@@ -103,18 +103,25 @@ struct WalfuancvaAvajSign: View {
               return
             }
             if vasjawCurrentType == .login {
-              let wangaMatchUser = userVM.loginByEmailAndPassword(
+              let wangaMatchUser: FeruyqCawdUer? = userVM.loginByEmailAndPassword(
                 email: vajdaUserEmail, password: vajdaPassword)
               if wangaMatchUser == nil {
                 FaioHUD.error("Email or password error")
                 return
               }
-                
+
             } else if vasjawCurrentType == .register {
               if vajdaPassword != vajdaRepassword {
                 FaioHUD.error("Inconsistent repeated password input")
                 return
               }
+              let vaiaxjNewUser: FeruyqCawdUer? = userVM.register(
+                email: vajdaUserEmail, password: vajdaPassword)
+              if vaiaxjNewUser == nil {
+                FaioHUD.error("Email already exists")
+                return
+              }
+
             }
             Task {
               FaioHUD.showLoading()

@@ -17,7 +17,7 @@ struct BnainzcScriptWriting: View {
   @FocusState private var baninzInputKeywordsIsFocused: Bool
 
   @State private var baniznzShowNoDiamond = false
-    @EnvironmentObject var userVM: FaioUserViewModel
+  @EnvironmentObject var userVM: FaioUserViewModel
 
   var body: some View {
     ZStack(alignment: .top) {
@@ -26,7 +26,11 @@ struct BnainzcScriptWriting: View {
         AwicnalWnvTopBar {
           HStack {
             Spacer()
-            Image("vnzwa_history").resizable().frame(width: 30, height: 30)
+            Button(action: {
+              appPath.append(AppRoute.aiScriptHistory)
+            }) {
+              Image("vnzwa_history").resizable().frame(width: 30, height: 30)
+            }
           }
         }
 
@@ -51,21 +55,24 @@ struct BnainzcScriptWriting: View {
                 text: $baninzInputKeywords, isFocused: $baninzInputKeywordsIsFocused, height: 128)
             }
             Button(action: {
-                if(bnainzMovieTheme.isEmpty || bnainzSeletedStyle.isEmpty || bnainzSeletedCharacter.isEmpty || baninzInputKeywords.isEmpty){
-                    FaioHUD.error("Please select and enter fully")
-                    return
-                }
-                if(userVM.currentUser?.feruyqCawdWalletBalance ?? 0 > 600){
-                    appPath.append(
-                      AppRoute.aiScriptWritingResult(
-                        theme: bnainzSeletedTheme,
-                        style: bnainzSeletedStyle,
-                        character: bnainzSeletedCharacter,
-                        keywords: baninzInputKeywords))
-                }else{
-                    baniznzShowNoDiamond = true
-                }
-              
+              if bnainzMovieTheme.isEmpty || bnainzSeletedStyle.isEmpty
+                || bnainzSeletedCharacter.isEmpty || baninzInputKeywords.isEmpty
+              {
+                FaioHUD.error("Please select and enter fully")
+                return
+              }
+              if userVM.currentUser?.feruyqCawdWalletBalance ?? 0 > 600 {
+                userVM.increaseUserDiamond(diamond: -600)
+                appPath.append(
+                  AppRoute.aiScriptWritingResult(
+                    theme: bnainzSeletedTheme,
+                    style: bnainzSeletedStyle,
+                    character: bnainzSeletedCharacter,
+                    keywords: baninzInputKeywords))
+              } else {
+                baniznzShowNoDiamond = true
+              }
+
             }) {
               HStack(spacing: 8) {
                 Spacer()

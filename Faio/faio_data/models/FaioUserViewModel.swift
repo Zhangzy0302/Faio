@@ -13,6 +13,10 @@ final class FaioUserViewModel: ObservableObject {
     userInfo = storage.getUserById(userId: uid)
   }
 
+  func returnUserInfoById(userId: Int) -> FeruyqCawdUer? {
+    storage.getUserById(userId: userId)
+  }
+
   func loadLoginUser() {
     users = storage.getUsers()
 
@@ -41,6 +45,36 @@ final class FaioUserViewModel: ObservableObject {
   func visitorLogin() {
     storage.setCurrentUserId(5)
     loadLoginUser()
+  }
+
+  // 注册
+  func register(email: String, password: String) -> FeruyqCawdUer? {
+    let users = storage.getUsers()
+    guard
+      users.first(where: { $0.feruyqCawdEmail == email }) == nil
+    else {
+      return nil
+    }
+
+    let newUser: FeruyqCawdUer = FeruyqCawdUer(
+      feruyqCawdUserId: users.count,
+      feruyqCawdEmail: email,
+      feruyqCawdPassword: password,
+      feruyqCawdUserName: "User_" + String(users.count),
+      feruyqCawdAvatar: "vnzwa_default_avatar",
+      feruyqCawdAboutMe: "new User",
+      feruyqCawdFollowing: [],
+      feruyqCawdFans: [],
+      feruyqCawdBlacklist: [],
+      feruyqCawdWalletBalance: 0,
+      feruyqCawdLikeWorks: [],
+      feruyqCawdIsDeleted: false
+    )
+
+    storage.addUser(user: newUser)
+    storage.setCurrentUserId(newUser.feruyqCawdUserId)
+    loadLoginUser()
+    return newUser
   }
 
   // 登出

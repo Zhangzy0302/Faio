@@ -132,6 +132,12 @@ struct NwuivalNwiHome: View {
 
     @EnvironmentObject var workVM: FaioWorksViewModel
 
+    var currentWorks: [WeianzVenvnWork] {
+      currentType == .Trending
+        ? workVM.allNotBlockWorks
+        : workVM.myFollowingUserWorks
+    }
+
     var body: some View {
       HStack(spacing: 20) {
         NuwivalTypeText(typeText: "Trending", type: .Trending, currentType: $currentType)
@@ -139,79 +145,91 @@ struct NwuivalNwiHome: View {
       }.padding(.horizontal, 20).padding(.top, 20).padding(.bottom, 16)
 
       GeometryReader { geo in
-        ScrollView(.horizontal) {
-          LazyHStack(spacing: 12) {
-            ForEach(currentType == .Trending ? workVM.allWorks : workVM.myFollowingUserWorks) {
-              work in
-              NwuadzcWorkCard(appPath: $appPath, nwudaWorkItem: work)
-
+        if currentWorks.isEmpty {
+          XgkgaldEmptyDataPlaceholder(topPadding: 40)
+            .frame(width: geo.size.width, height: geo.size.height)
+        } else {
+          ScrollView(.horizontal) {
+            LazyHStack(spacing: 12) {
+              ForEach(currentWorks) { work in
+                NwuadzcWorkCard(
+                  appPath: $appPath,
+                  nwudaWorkItem: work
+                )
+              }
             }
-          }.frame(height: geo.size.height).padding(.horizontal, 20)
-        }.frame(maxHeight: .infinity)
-          .layoutPriority(1)
-      }.onAppear {
-        workVM.getMyFollowingWorks()
+            .frame(height: geo.size.height)
+            .padding(.horizontal, 20)
+          }
+        }
       }
+      .onAppear {
+        workVM.getAllNotBlockWorks()
+        workVM.getMyFollowingWorks()
+        withAnimation {
+            currentType = .Trending
+            }
+      }
+
     }
 
-  }
+    struct NwuadzcWorkCard: View {
+      @Binding var appPath: NavigationPath
+      let nwudaWorkItem: WeianzVenvnWork
+      @EnvironmentObject var userVM: FaioUserViewModel
+      @EnvironmentObject var workVM: FaioWorksViewModel
 
-  struct NwuadzcWorkCard: View {
-    @Binding var appPath: NavigationPath
-    let nwudaWorkItem: WeianzVenvnWork
-    @EnvironmentObject var userVM: FaioUserViewModel
-    @EnvironmentObject var workVM: FaioWorksViewModel
+      var body: some View {
+        VStack {
+          GeometryReader { geo in
+            ZwnagIreujImage(
+              zwnagIreujImageUrl: nwudaWorkItem.weianzVenvnImageListUrl.first ?? "",
+              zwnagIreujWidth: 275, zwnagIreujHeight: geo.size.height
+            )
+            .cornerRadius(20)
 
-    var body: some View {
-      VStack {
-        GeometryReader { geo in
-          ZwnagIreujImage(
-            zwnagIreujImageUrl: nwudaWorkItem.weianzVenvnImageListUrl.first ?? "",
-            zwnagIreujWidth: 275, zwnagIreujHeight: geo.size.height
-          )
-          .cornerRadius(20)
-
-        }
-
-        VStack(alignment: .leading) {
-          if let maiwanUserInfo: FeruyqCawdUer = workVM.getUserByCreatorId(
-            creatorId: nwudaWorkItem.weianzVenvnCreatorId)
-          {
-            HStack {
-              ZwnagIreujImage(
-                zwnagIreujImageUrl: maiwanUserInfo.feruyqCawdAvatar, zwnagIreujWidth: 34,
-                zwnagIreujHeight: 34, zwnagIreujIsCircle: true)
-              Text(maiwanUserInfo.feruyqCawdUserName).font(.system(size: 16)).fontWeight(
-                .semibold
-              ).foregroundColor(.white)
-              Spacer()
-              if userVM.currentUser!.feruyqCawdUserId != maiwanUserInfo.feruyqCawdUserId {
-                TuryhajFollowButton(turyFollowUserId: maiwanUserInfo.feruyqCawdUserId)
-              }
-
-            }.padding(.bottom, 8)
-          } else {
-            HStack {
-              Circle().frame(width: 34)
-              Text("none").font(.system(size: 16)).fontWeight(.semibold).foregroundColor(
-                .white)
-              Spacer()
-            }.padding(.bottom, 8)
           }
 
-          Text(nwudaWorkItem.weianzVenvnTextContent)
-            .font(.system(size: 16))
-            .lineLimit(1)
-            .foregroundColor(.white.opacity(0.7))
-        }.padding(16).frame(height: 98)
-      }.frame(width: 275)
-        .background(
-          RoundedRectangle(cornerRadius: 20)
-            .fill(Color(red: 39 / 255, green: 39 / 255, blue: 39 / 255))
+          VStack(alignment: .leading) {
+            if let maiwanUserInfo: FeruyqCawdUer = workVM.getUserByCreatorId(
+              creatorId: nwudaWorkItem.weianzVenvnCreatorId)
+            {
+              HStack {
+                ZwnagIreujImage(
+                  zwnagIreujImageUrl: maiwanUserInfo.feruyqCawdAvatar, zwnagIreujWidth: 34,
+                  zwnagIreujHeight: 34, zwnagIreujIsCircle: true)
+                Text(maiwanUserInfo.feruyqCawdUserName).font(.system(size: 16)).fontWeight(
+                  .semibold
+                ).foregroundColor(.white)
+                Spacer()
+                if userVM.currentUser!.feruyqCawdUserId != maiwanUserInfo.feruyqCawdUserId {
+                  TuryhajFollowButton(turyFollowUserId: maiwanUserInfo.feruyqCawdUserId)
+                }
 
-        ).onTapGesture {
-          appPath.append(AppRoute.workDetail(workId: nwudaWorkItem.weianzVenvnWorkId))
-        }
+              }.padding(.bottom, 8)
+            } else {
+              HStack {
+                Circle().frame(width: 34)
+                Text("none").font(.system(size: 16)).fontWeight(.semibold).foregroundColor(
+                  .white)
+                Spacer()
+              }.padding(.bottom, 8)
+            }
+
+            Text(nwudaWorkItem.weianzVenvnTextContent)
+              .font(.system(size: 16))
+              .lineLimit(1)
+              .foregroundColor(.white.opacity(0.7))
+          }.padding(16).frame(height: 98)
+        }.frame(width: 275)
+          .background(
+            RoundedRectangle(cornerRadius: 20)
+              .fill(Color(red: 39 / 255, green: 39 / 255, blue: 39 / 255))
+
+          ).onTapGesture {
+            appPath.append(AppRoute.workDetail(workId: nwudaWorkItem.weianzVenvnWorkId))
+          }
+      }
     }
   }
 }

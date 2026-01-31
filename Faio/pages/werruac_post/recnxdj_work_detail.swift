@@ -115,6 +115,19 @@ struct RecnxdjWorkDetail: View {
       workVM.getWorkDetailByWorkId(workId: recnxdjWorkId)
       commentVM.getCommentsNotBlockByWorkId(workId: recnxdjWorkId)
     }
+    .onChange(of: isPresented) { show in
+      guard show == false else { return }
+
+      if let ghaunzMyInfo = userVM.currentUser,
+        ghaunzMyInfo.feruyqCawdBlacklist.contains(recoanBlockUserId)
+      {
+
+        // ⚠️ 确保 NavigationPath 不越界
+        if !appPath.isEmpty {
+          appPath.removeLast()
+        }
+      }
+    }
   }
 
   private struct RecnxjBottomBar: View {

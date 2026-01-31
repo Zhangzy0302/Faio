@@ -7,12 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		DDA6313C2F24AE5A005F9EB3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DDA6313B2F24AE5A005F9EB3 /* LaunchScreen.storyboard */; };
+		DDA5D3862F2C83FF008A1138 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = DDA5D3852F2C83FF008A1138 /* Alamofire */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		DD141FF42F1DC8880023444B /* Faio.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Faio.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		DDA6313B2F24AE5A005F9EB3 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -41,6 +40,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DDA5D3862F2C83FF008A1138 /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -50,7 +50,6 @@
 		DD141FEB2F1DC8880023444B = {
 			isa = PBXGroup;
 			children = (
-				DDA6313B2F24AE5A005F9EB3 /* LaunchScreen.storyboard */,
 				DD141FF62F1DC8880023444B /* Faio */,
 				DD141FF52F1DC8880023444B /* Products */,
 			);
@@ -85,6 +84,7 @@
 			);
 			name = Faio;
 			packageProductDependencies = (
+				DDA5D3852F2C83FF008A1138 /* Alamofire */,
 			);
 			productName = Faio;
 			productReference = DD141FF42F1DC8880023444B /* Faio.app */;
@@ -115,6 +115,7 @@
 			mainGroup = DD141FEB2F1DC8880023444B;
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
+				DDA5D3842F2C83FF008A1138 /* XCRemoteSwiftPackageReference "Alamofire" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = DD141FF52F1DC8880023444B /* Products */;
@@ -131,7 +132,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DDA6313C2F24AE5A005F9EB3 /* LaunchScreen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -296,7 +296,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Faio/Preview Content\"";
@@ -338,7 +338,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Faio/Preview Content\"";
@@ -397,6 +397,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		DDA5D3842F2C83FF008A1138 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				kind = upToNextMinorVersion;
+				minimumVersion = 5.8.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		DDA5D3852F2C83FF008A1138 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DDA5D3842F2C83FF008A1138 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = DD141FEC2F1DC8880023444B /* Project object */;
 }
