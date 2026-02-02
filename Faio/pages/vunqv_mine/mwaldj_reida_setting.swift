@@ -38,7 +38,17 @@ struct MwaldjReiDaSetting: View {
         VStack(spacing: 20) {
           FeqocnButton(
             feqocnText: "Delete account", feqocnBgColorIsOrange: false,
-            feqocnFontColor: Color(red: 1, green: 153 / 255, blue: 0), action: {})
+            feqocnFontColor: Color(red: 1, green: 153 / 255, blue: 0),
+            action: {
+              Task {
+                FaioHUD.showLoading()
+                await delay(3)
+                FaioHUD.hideLoading()
+                userVM.deleteAccount()
+                appPath.removeLast(appPath.count)
+                appPath.append(AppRoute.guiding)
+              }
+            })
           FeqocnButton(
             feqocnText: "Log out", feqocnBgColorIsOrange: true,
             action: {

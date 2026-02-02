@@ -47,6 +47,30 @@ final class FaioUserViewModel: ObservableObject {
     loadLoginUser()
   }
 
+  // 删除账号
+  func deleteAccount() {
+    if storage.getCurrentUserId() == 5 {
+      storage.updateUser(uid: 5) { user in
+        var newUser: FeruyqCawdUer = user
+        newUser.feruyqCawdUserName = "Visitor_00" + "\(Int.random(in: 20...100))"
+        newUser.feruyqCawdAvatar = "vnzwa_default_avatar"
+        newUser.feruyqCawdAboutMe = "I'm visitor"
+        newUser.feruyqCawdFollowing = []
+        newUser.feruyqCawdFans = []
+        newUser.feruyqCawdBlacklist = []
+        newUser.feruyqCawdWalletBalance = 0
+        newUser.feruyqCawdLikeWorks = []
+        newUser.feruyqCawdIsDeleted = false
+        return newUser
+      }
+    } else {
+      toggleUserIsDeleted()
+    }
+
+    storage.setCurrentUserId(3366)
+    loadLoginUser()
+  }
+
   // 注册
   func register(email: String, password: String) -> FeruyqCawdUer? {
     let users = storage.getUsers()
