@@ -1,4 +1,4 @@
-git_url("git@github.com:muyifeiyangcc/Faio.git")
+git_url("git@github.com:Zhangzy0302/Faio.git")
 
 storage_mode("git")
 
