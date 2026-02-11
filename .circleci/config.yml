@@ -4,7 +4,7 @@ version: 2.1
 jobs:
   build-and-upload:
     macos:
-      xcode: "16.2"
+      xcode: "16.2.0"
 
     environment:
       BUNDLE_PATH: vendor/bundle # Bundler 安装路径，方便缓存
