@@ -58,18 +58,14 @@ platform :ios do
     on_match
     prepare_gym
     gym(
-      export_method: export_method,
-      # output_directory: "./build",
-      # buildlog_path: "./build",
+      project: "Faio.xcodeproj",     # 如果是 workspace 就用 workspace
+      scheme: ENV["SCHEME"],         # 一定要有
       clean: true,
-      silent: true,
-      )
-    deliver(
-      skip_metadata: true,
-      skip_screenshots: true,
-      submit_for_review: false
-    ) if export_method == "app-store"
-    pgyer(api_key: pgy_api_key) if export_method == "ad-hoc"
+
+      export_method: export_method,
+      output_directory: "./build",   # 👈 非常关键
+      output_name: "Faio.ipa"
+    )
   end
 
   lane :on_match do
@@ -101,16 +97,16 @@ platform :ios do
     # sh "git config --global user.email 'ci@example.com'"
     # sh "git config --global user.name 'CI Bot'"
 
-    register_devices(
-      devices: {
-        "iPhone" => "00008110-00066DE92E00402E",
-      }
-    )
+    # register_devices(
+    #   devices: {
+    #     "iPhone" => "00008110-00066DE92E00402E",
+    #   }
+    # )
 
   	match(
         git_branch: username,
         username: username,
-        type: "development",
+        type: "appstore",
         app_identifier: [bundle_id],
         force_for_new_devices: true,
         readonly: false,
@@ -139,9 +135,12 @@ platform :ios do
 	  UI.important "profile_name = #{profile_name}"
 
     update_code_signing_settings(
+      path: "Faio.xcodeproj",
       use_automatic_signing: false,
-      team_id: team_id,
-      profile_name: profile_name,
+      team_id: "MTZ755RNM7",
+      targets: ["Faio"],
+      code_sign_identity: "Apple Distribution",
+      profile_name: "match AppStore com.fwicnadeiqncei.Faio",
     )
     
 
