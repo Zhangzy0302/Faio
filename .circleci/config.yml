@@ -1,15 +1,22 @@
+# .circleci/config.yml
 version: 2.1
 
 jobs:
   build-and-upload:
     macos:
-      xcode: "16.4.0"
+      xcode: "16.4" #自己当前Xcode版本
 
     environment:
-      BUNDLE_PATH: vendor/bundle
+      BUNDLE_PATH: vendor/bundle # Bundler 安装路径，方便缓存
       FL_OUTPUT_DIR: build
+
       LC_ALL: en_US.UTF-8
       LANG: en_US.UTF-8
+    #      FASTLANE_USER: "${FASTLANE_USER}"
+    #      ASC_KEY_ID: "${ASC_KEY_ID}"
+    #      ASC_ISSUER_ID: "${ASC_ISSUER_ID}"
+    #      ASC_KEY_CONTENT: "${ASC_KEY_CONTENT}"
+    #      MATCH_PASSWORD: "${MATCH_PASSWORD}"
 
     steps:
       - checkout
@@ -21,6 +28,7 @@ jobs:
             xcodebuild -version
             git config --global user.email "ci@example.com"
             git config --global user.name "CI Bot"
+            git config --list | grep user.
 
       - restore_cache:
           keys:
@@ -52,6 +60,12 @@ jobs:
           name: Run Fastlane
           command: bundle exec fastlane release
 
+      - run:
+          name: Zip ipa
+          command: |
+            cd build
+            zip ipa.zip *.ipa
+
       - store_artifacts:
           path: build
 
@@ -63,4 +77,4 @@ workflows:
           filters:
             branches:
               only:
-                - main
+                - main # 当前打包分支---github对应的分支
