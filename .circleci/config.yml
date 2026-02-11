@@ -3,9 +3,7 @@ version: 2.1
 jobs:
   build-and-upload:
     macos:
-      xcode: "16.2.0"
-
-    resource_class: macos.m2.large
+      xcode: "16.2"
 
     environment:
       BUNDLE_PATH: vendor/bundle
