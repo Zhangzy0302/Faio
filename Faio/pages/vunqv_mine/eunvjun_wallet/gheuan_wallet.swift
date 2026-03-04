@@ -31,7 +31,7 @@ struct GhueanWallet: View {
               ForEach(ghuencziwProducts, id: \.beuaxjcaiKeyId) { gem in
                 Button(action: {
                   Task {
-                    await iapManager.recharge(gem)
+                    iapManager.recharge(gem.beuaxjcaiKeyId)
                   }
                 }) {
                   COeuaGemWalletItem(gem: gem)
@@ -68,10 +68,7 @@ struct GhueanWallet: View {
       }
 
     }.navigationBarHidden(true)
-      .task {
-        await iapManager.fetchProducts()
-
-      }
+        .background(EnableSwipeBack())
   }
 
   struct COeuaGemWalletItem: View {

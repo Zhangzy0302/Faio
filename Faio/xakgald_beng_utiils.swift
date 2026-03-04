@@ -152,3 +152,22 @@ struct XgkgaldEmptyDataPlaceholder: View {
 
   }
 }
+
+// 桥接 UIKit 恢复手势
+struct EnableSwipeBack: UIViewControllerRepresentable {
+    
+    func makeUIViewController(context: Context) -> UIViewController {
+        let controller = UIViewController()
+        
+        DispatchQueue.main.async {
+            if let nav = controller.navigationController {
+                nav.interactivePopGestureRecognizer?.isEnabled = true
+                nav.interactivePopGestureRecognizer?.delegate = nil
+            }
+        }
+        
+        return controller
+    }
+    
+    func updateUIViewController(_ uiViewController: UIViewController, context: Context) {}
+}

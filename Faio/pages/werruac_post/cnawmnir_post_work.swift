@@ -89,7 +89,9 @@ struct CnawmnirPostWork: View {
         cnawnirUploadImageList.append(contentsOf: finalPaths)
         selectedAvatarItems.removeAll()
       }
-    }.navigationBarHidden(true).onTapGesture {
+    }.navigationBarHidden(true)
+          .background(EnableSwipeBack())
+          .onTapGesture {
       cnawmnirNameFocus = false
     }
   }

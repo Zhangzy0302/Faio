@@ -109,6 +109,7 @@ struct HgrunclUserPage: View {
       workVM.getWorksByUserId(userId: hgruncUserId)
 
     }.navigationBarHidden(true)
+          .background(EnableSwipeBack())
       .onChange(of: hgrunclIsShwoBlock) { show in
         guard show == false else { return }
 

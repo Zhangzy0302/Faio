@@ -91,6 +91,7 @@ struct XwubaEvhhAiChat: View {
     }.onTapGesture {
       xwubaEvhhIsFocused = false
     }.navigationBarHidden(true)
+          .background(EnableSwipeBack())
       .onAppear {
         xuwbaChatMessageList.append(
           XwuajbChatMsg(

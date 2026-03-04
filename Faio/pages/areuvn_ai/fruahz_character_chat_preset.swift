@@ -109,7 +109,9 @@ struct FruahzCharacterChatPreset: View {
         PwovzadfNoDiamonds(appPath: $appPath, pwovzaIsShowAlert: $baniznzShowNoDiamond)
           .padding(.horizontal, 24)
       }
-    }.navigationBarHidden(true).onTapGesture {
+    }.navigationBarHidden(true)
+          .background(EnableSwipeBack())
+          .onTapGesture {
       fruzhInputIsFocus_1 = false
       fruzhInputIsFocus_2 = false
     }

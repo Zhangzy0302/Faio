@@ -47,6 +47,7 @@ struct UwiqonbUserList: View {
 
       }
     }.navigationBarHidden(true)
+        .background(EnableSwipeBack())
   }
 
   private var uwiqonbzUserList: [Int] {

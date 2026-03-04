@@ -95,6 +95,7 @@ struct EuenxzScriptResults: View {
         }
       }
     }
+    .background(EnableSwipeBack())
     .navigationBarHidden(true)
   }
 }

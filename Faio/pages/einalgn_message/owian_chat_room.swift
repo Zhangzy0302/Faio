@@ -80,6 +80,7 @@ struct OwianChatRoom: View {
           zcnwinaIsShow: $owianIsShowBlock, appPath: $appPath, zcnwinaBlockUserId: owianBlockUserId)
       }
     }.navigationBarHidden(true)
+          .background(EnableSwipeBack())
       .onChange(of: owianIsShowBlock) { show in
         guard show == false else { return }
 

@@ -12,12 +12,38 @@
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>CFBundleURLName</key>
-			<string>nytha.com</string>
+			<string>faio.com</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>nytha</string>
+				<string>faio</string>
 			</array>
 		</dict>
+		<dict>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>fb1234052162248998</string>
+			</array>
+		</dict>
+	</array>
+	<key>FacebookAppID</key>
+	<string>1234052162248998</string>
+	<key>FacebookAutoLogAppEventsEnabled</key>
+	<true/>
+	<key>FacebookClientToken</key>
+	<string>0f7e3533f8feb3f7a679a4129a2334d7</string>
+	<key>FacebookDisplayName</key>
+	<string>Faio</string>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>whatsapp</string>
+		<string>instagram</string>
+		<string>fb</string>
+		<string>tiktok</string>
+		<string>comgooglemaps</string>
+		<string>tweetie</string>
+		<string>wechat</string>
+		<string>alipay</string>
+		<string>mqq</string>
 	</array>
 	<key>NSAppTransportSecurity</key>
 	<dict>
@@ -34,6 +60,8 @@
 	<string>This app needs microphone access for recording voice messages and sharing audio. Audio stays on your device unless you share. Privacy is our priority.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>This app needs access to your photo library for sharing memorable photos/videos. It stays on your device unless you share. Access is for easy sharing and is privacy-protected.</string>
+  <key>NSUserTrackingUsageDescription</key>
+	<string>This app needs access to your device information, allowing us to deliver more personalized ads. Please be assured that your privacy will remain strictly protected. We’ll only use this access to enhance your experience.</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>SourceHanSansSC-Bold.otf</string>
@@ -44,7 +72,18 @@
 		<string>SourceHanSansSC-Normal.otf</string>
 		<string>SourceHanSansSC-Regular.otf</string>
 	</array>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>remote-notification</string>
+	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+	<key>UNUserNotificationCenter</key>
+	<dict>
+		<key>UNAuthorizationOptions</key>
+		<array>
+			<string>alert</string>
+		</array>
+	</dict>
 </dict>
 </plist>

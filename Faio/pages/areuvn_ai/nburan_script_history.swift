@@ -21,7 +21,9 @@ struct NburanScriptHistory: View {
           
         }
       }
-    }.navigationBarHidden(true).onAppear {
+    }.navigationBarHidden(true)
+          .background(EnableSwipeBack())
+          .onAppear {
       moiveScriptHistoryVM.getMyHistory()
     }
   }

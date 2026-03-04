@@ -109,7 +109,9 @@ struct RecnxdjWorkDetail: View {
           ZcnwinaReportBlockBottom(
             zcnwinaIsShow: $isPresented, appPath: $appPath, zcnwinaBlockUserId: recoanBlockUserId)
         })
-    }.navigationBarHidden(true).onTapGesture {
+    }.navigationBarHidden(true)
+          .background(EnableSwipeBack())
+          .onTapGesture {
       recnInputIsFocus = false
     }.onAppear {
       workVM.getWorkDetailByWorkId(workId: recnxdjWorkId)

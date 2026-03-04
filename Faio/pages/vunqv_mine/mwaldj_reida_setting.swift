@@ -46,7 +46,6 @@ struct MwaldjReiDaSetting: View {
                 FaioHUD.hideLoading()
                 userVM.deleteAccount()
                 appPath.removeLast(appPath.count)
-                appPath.append(AppRoute.guiding)
               }
             })
           FeqocnButton(
@@ -54,11 +53,11 @@ struct MwaldjReiDaSetting: View {
             action: {
               userVM.logout()
               appPath.removeLast(appPath.count)
-              appPath.append(AppRoute.guiding)
             })
         }.padding(.horizontal, 20).padding(.bottom, 34)
       }
     }.navigationBarHidden(true)
+          .background(EnableSwipeBack())
   }
 
   struct MuwcSettingItem: View {

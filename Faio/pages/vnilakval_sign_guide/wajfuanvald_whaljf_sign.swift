@@ -128,14 +128,13 @@ struct WalfuancvaAvajSign: View {
               await delay(0.8)
               FaioHUD.hideLoading()
               appPath.removeLast(appPath.count)
-              appPath.append(AppRoute.main)
             }
 
           }
         ).padding(.horizontal, 20).padding(.vertical, 34)
       }.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
     }.navigationBarBackButtonHidden(true)  // 隐藏返回按钮
-      .toolbar(.hidden, for: .navigationBar)  // 隐藏整个导航栏
+          .background(EnableSwipeBack())
       .onTapGesture {
         wivnadFocus1 = false
         wivnadFocus2 = false

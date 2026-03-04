@@ -35,6 +35,8 @@ struct FaioAuthRoute: View {
 
   @State private var appPath = NavigationPath()
   @EnvironmentObject var userVM: FaioUserViewModel
+    
+    @EnvironmentObject var iapManager: IAPManager
 
   private let storage = FaioStorageManager.shared
 
@@ -64,8 +66,7 @@ struct FaioAuthRoute: View {
           WalfuancvaAvajSign(appPath: $appPath)
 
         case .agreementWeb(let webUrl):
-          PonvbnAgreementWeb(ponvbnWebUrl: webUrl)
-
+            PonvbnAgreementWeb(appPath: $appPath, ponvbnWebUrl: webUrl)
         case .main:
           BienajvfjWangrdNavPage(appPath: $appPath)
         // ===== User Route =====
@@ -76,8 +77,7 @@ struct FaioAuthRoute: View {
         case .editInfo:
           IeujanEditInfo()
         case .wallet:
-          GhueanWallet().environmentObject(userVM)
-            .environmentObject(IAPManager(userVM: userVM))
+          GhueanWallet()
         case .userList(let listType):
           UwiqonbUserList(uwiqnvListType: listType)
         case .reportPage:
@@ -115,6 +115,10 @@ struct FaioAuthRoute: View {
           NburanScriptHistory()
         }
 
+      }
+      .environmentObject(iapManager)
+      .task {
+          iapManager.fetchProducts()
       }
 
     }

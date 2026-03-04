@@ -7,7 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DD0D02D02F552C34005CD4DA /* ScreenShield in Frameworks */ = {isa = PBXBuildFile; productRef = DD0D02CF2F552C34005CD4DA /* ScreenShield */; };
+		DD495DB52F517EE7004BFBD7 /* FacebookAEM in Frameworks */ = {isa = PBXBuildFile; productRef = DD495DB42F517EE7004BFBD7 /* FacebookAEM */; };
+		DD495DB72F517EE7004BFBD7 /* FacebookBasics in Frameworks */ = {isa = PBXBuildFile; productRef = DD495DB62F517EE7004BFBD7 /* FacebookBasics */; };
+		DD495DB92F517EE7004BFBD7 /* FacebookCore in Frameworks */ = {isa = PBXBuildFile; productRef = DD495DB82F517EE7004BFBD7 /* FacebookCore */; };
 		DDA5D3862F2C83FF008A1138 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = DDA5D3852F2C83FF008A1138 /* Alamofire */; };
+		DDA791A92F5690FE00F34080 /* AdjustSdk in Frameworks */ = {isa = PBXBuildFile; productRef = DDA791A82F5690FE00F34080 /* AdjustSdk */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,7 +45,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DDA791A92F5690FE00F34080 /* AdjustSdk in Frameworks */,
+				DD495DB72F517EE7004BFBD7 /* FacebookBasics in Frameworks */,
+				DD0D02D02F552C34005CD4DA /* ScreenShield in Frameworks */,
+				DD495DB52F517EE7004BFBD7 /* FacebookAEM in Frameworks */,
 				DDA5D3862F2C83FF008A1138 /* Alamofire in Frameworks */,
+				DD495DB92F517EE7004BFBD7 /* FacebookCore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -85,6 +95,11 @@
 			name = Faio;
 			packageProductDependencies = (
 				DDA5D3852F2C83FF008A1138 /* Alamofire */,
+				DD495DB42F517EE7004BFBD7 /* FacebookAEM */,
+				DD495DB62F517EE7004BFBD7 /* FacebookBasics */,
+				DD495DB82F517EE7004BFBD7 /* FacebookCore */,
+				DD0D02CF2F552C34005CD4DA /* ScreenShield */,
+				DDA791A82F5690FE00F34080 /* AdjustSdk */,
 			);
 			productName = Faio;
 			productReference = DD141FF42F1DC8880023444B /* Faio.app */;
@@ -116,6 +131,9 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				DDA5D3842F2C83FF008A1138 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				DD495DB32F517EE7004BFBD7 /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */,
+				DD0D02CE2F552C34005CD4DA /* XCRemoteSwiftPackageReference "ScreenShield" */,
+				DDA791A72F5690FE00F34080 /* XCRemoteSwiftPackageReference "ios_sdk" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = DD141FF52F1DC8880023444B /* Products */;
@@ -297,6 +315,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
+				CODE_SIGN_ENTITLEMENTS = Faio/Faio.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"Faio/Preview Content\"";
@@ -309,9 +328,9 @@
 				INFOPLIST_KEY_CFBundleDisplayName = Faio;
 				INFOPLIST_KEY_NSCameraUsageDescription = "This app needs camera access to capture landscapes, portraits, and videos. Your photos and videos can decorate your profile or share with friends. They're securely stored on your device and only shared with your permission. Privacy and security are protected.";
 				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "This app needs location access for sharing, discovering events, and using location-based features. Location data is used responsibly with your consent. Privacy and security are our priorities.";
-				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "This app needs to access your location information to deliver a more personalized experience.  Your location data will be strictly kept confidential and used only with your authorization to improve your overall user experience.";
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "This app needs location access for sharing, discovering events, and using location-based features. Location data is used responsibly with your consent. Privacy and security are our priorities.";
 				INFOPLIST_KEY_NSLocationUsageDescription = "This app needs location access for sharing, discovering events, and using location-based features. Location data is used responsibly with your consent. Privacy and security are our priorities.";
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "This app needs to access your location information to deliver a more personalized experience.  Your location data will be strictly kept confidential and used only with your authorization to improve your overall user experience.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "This app needs location access for sharing, discovering events, and using location-based features. Location data is used responsibly with your consent. Privacy and security are our priorities.";
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "This app needs microphone access for recording voice messages and sharing audio. Audio stays on your device unless you share. Privacy is our priority.";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "This app needs access to your photo library for sharing memorable photos/videos. It stays on your device unless you share. Access is for easy sharing and is privacy-protected.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -319,7 +338,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIStatusBarHidden = NO;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -327,7 +346,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.fwicnadeiqncei.Faio;
+				PRODUCT_BUNDLE_IDENTIFIER = app.myfy.test;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -341,6 +360,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
+				CODE_SIGN_ENTITLEMENTS = Faio/Faio.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"Faio/Preview Content\"";
@@ -353,9 +373,9 @@
 				INFOPLIST_KEY_CFBundleDisplayName = Faio;
 				INFOPLIST_KEY_NSCameraUsageDescription = "This app needs camera access to capture landscapes, portraits, and videos. Your photos and videos can decorate your profile or share with friends. They're securely stored on your device and only shared with your permission. Privacy and security are protected.";
 				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "This app needs location access for sharing, discovering events, and using location-based features. Location data is used responsibly with your consent. Privacy and security are our priorities.";
-				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "This app needs to access your location information to deliver a more personalized experience.  Your location data will be strictly kept confidential and used only with your authorization to improve your overall user experience.";
+				INFOPLIST_KEY_NSLocationAlwaysUsageDescription = "This app needs location access for sharing, discovering events, and using location-based features. Location data is used responsibly with your consent. Privacy and security are our priorities.";
 				INFOPLIST_KEY_NSLocationUsageDescription = "This app needs location access for sharing, discovering events, and using location-based features. Location data is used responsibly with your consent. Privacy and security are our priorities.";
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "This app needs to access your location information to deliver a more personalized experience.  Your location data will be strictly kept confidential and used only with your authorization to improve your overall user experience.";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "This app needs location access for sharing, discovering events, and using location-based features. Location data is used responsibly with your consent. Privacy and security are our priorities.";
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "This app needs microphone access for recording voice messages and sharing audio. Audio stays on your device unless you share. Privacy is our priority.";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "This app needs access to your photo library for sharing memorable photos/videos. It stays on your device unless you share. Access is for easy sharing and is privacy-protected.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -363,7 +383,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIStatusBarHidden = NO;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -371,7 +391,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.fwicnadeiqncei.Faio;
+				PRODUCT_BUNDLE_IDENTIFIER = app.myfy.test;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -403,6 +423,22 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		DD0D02CE2F552C34005CD4DA /* XCRemoteSwiftPackageReference "ScreenShield" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/JayantBadlani/ScreenShield.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.2.2;
+			};
+		};
+		DD495DB32F517EE7004BFBD7 /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/facebook/facebook-ios-sdk.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 14.1.0;
+			};
+		};
 		DDA5D3842F2C83FF008A1138 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
@@ -411,13 +447,46 @@
 				minimumVersion = 5.8.0;
 			};
 		};
+		DDA791A72F5690FE00F34080 /* XCRemoteSwiftPackageReference "ios_sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/adjust/ios_sdk.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		DD0D02CF2F552C34005CD4DA /* ScreenShield */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DD0D02CE2F552C34005CD4DA /* XCRemoteSwiftPackageReference "ScreenShield" */;
+			productName = ScreenShield;
+		};
+		DD495DB42F517EE7004BFBD7 /* FacebookAEM */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DD495DB32F517EE7004BFBD7 /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */;
+			productName = FacebookAEM;
+		};
+		DD495DB62F517EE7004BFBD7 /* FacebookBasics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DD495DB32F517EE7004BFBD7 /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */;
+			productName = FacebookBasics;
+		};
+		DD495DB82F517EE7004BFBD7 /* FacebookCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DD495DB32F517EE7004BFBD7 /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */;
+			productName = FacebookCore;
+		};
 		DDA5D3852F2C83FF008A1138 /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = DDA5D3842F2C83FF008A1138 /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
+		};
+		DDA791A82F5690FE00F34080 /* AdjustSdk */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DDA791A72F5690FE00F34080 /* XCRemoteSwiftPackageReference "ios_sdk" */;
+			productName = AdjustSdk;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

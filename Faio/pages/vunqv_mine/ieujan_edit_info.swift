@@ -79,7 +79,9 @@ struct IeujanEditInfo: View {
                     }
                 }
             }
-        }.navigationBarHidden(true).onTapGesture {
+        }.navigationBarHidden(true)
+            .background(EnableSwipeBack())
+            .onTapGesture {
             ieujanNameFocus = false
             ieujanAboutMeFocus = false
         }.onAppear{

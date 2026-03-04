@@ -27,6 +27,7 @@ struct VwaldjgVideoCalling: View {
                 }.padding(.bottom, 60)
             }
         }.navigationBarHidden(true)
+            .background(EnableSwipeBack())
             .onAppear{
                 userVM.getUserInfoByUid(uid: vwaljdChatUserId)
             }

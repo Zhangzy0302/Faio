@@ -35,7 +35,9 @@ struct NinzvnReportPage: View {
                     dismiss()
                 }).padding(.bottom, 20)
             }.padding(.horizontal, 20)
-        }.navigationBarHidden(true).onTapGesture {
+        }.navigationBarHidden(true)
+            .background(EnableSwipeBack())
+            .onTapGesture {
             ninzvnIsFocus = false
         }
     }

@@ -100,7 +100,9 @@ struct BnainzcScriptWriting: View {
         PwovzadfNoDiamonds(appPath: $appPath, pwovzaIsShowAlert: $baniznzShowNoDiamond)
           .padding(.horizontal, 24)
       }
-    }.navigationBarHidden(true).onTapGesture {
+    }.navigationBarHidden(true)
+          .background(EnableSwipeBack())
+          .onTapGesture {
       baninzInputKeywordsIsFocused = false
     }
   }

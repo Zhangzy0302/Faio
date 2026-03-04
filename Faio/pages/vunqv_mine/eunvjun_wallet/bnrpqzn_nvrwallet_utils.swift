@@ -1,3 +1,4 @@
+import FBSDKCoreKit
 import StoreKit
 import SwiftUI
 
@@ -7,131 +8,224 @@ struct BeuaxjcaiProduct {
   let beuaxjcaiPrice: Double
 }
 
+//let ghuencziwProducts: [BeuaxjcaiProduct] = [
+//  BeuaxjcaiProduct(
+//    beuaxjcaiKeyId: "kovjqczbbagfcwtp", beuaxjcaiGetDiamond: 400, beuaxjcaiPrice: 0.99),
+//  BeuaxjcaiProduct(
+//    beuaxjcaiKeyId: "ygdtyfsetyaptuzu", beuaxjcaiGetDiamond: 800, beuaxjcaiPrice: 1.99),
+//  BeuaxjcaiProduct(
+//    beuaxjcaiKeyId: "iinptqvcxprqbjaq", beuaxjcaiGetDiamond: 2450, beuaxjcaiPrice: 4.99),
+//  BeuaxjcaiProduct(
+//    beuaxjcaiKeyId: "vxqusifauhoifyrh", beuaxjcaiGetDiamond: 5150, beuaxjcaiPrice: 9.99),
+//  BeuaxjcaiProduct(
+//    beuaxjcaiKeyId: "xqmdrvaewpkslhtn", beuaxjcaiGetDiamond: 6400, beuaxjcaiPrice: 12.99),
+//  BeuaxjcaiProduct(
+//    beuaxjcaiKeyId: "wyelujafcagiojjj", beuaxjcaiGetDiamond: 10800, beuaxjcaiPrice: 19.99),
+//  BeuaxjcaiProduct(
+//    beuaxjcaiKeyId: "bczufnoykqjewrsa", beuaxjcaiGetDiamond: 11200, beuaxjcaiPrice: 20.99),
+//  BeuaxjcaiProduct(
+//    beuaxjcaiKeyId: "xwbzewwucitehljp", beuaxjcaiGetDiamond: 29400, beuaxjcaiPrice: 49.99),
+//  BeuaxjcaiProduct(
+//    beuaxjcaiKeyId: "mptxkvdnshfcaeor", beuaxjcaiGetDiamond: 39500, beuaxjcaiPrice: 79.99),
+//  BeuaxjcaiProduct(
+//    beuaxjcaiKeyId: "wkxvtywoyadaqvue", beuaxjcaiGetDiamond: 63700, beuaxjcaiPrice: 99.99),
+//]
+
 let ghuencziwProducts: [BeuaxjcaiProduct] = [
   BeuaxjcaiProduct(
-    beuaxjcaiKeyId: "kovjqczbbagfcwtp", beuaxjcaiGetDiamond: 400, beuaxjcaiPrice: 0.99),
+    beuaxjcaiKeyId: "lvbsvhxcgcrvesor", beuaxjcaiGetDiamond: 400, beuaxjcaiPrice: 0.99),
   BeuaxjcaiProduct(
     beuaxjcaiKeyId: "ygdtyfsetyaptuzu", beuaxjcaiGetDiamond: 800, beuaxjcaiPrice: 1.99),
   BeuaxjcaiProduct(
-    beuaxjcaiKeyId: "iinptqvcxprqbjaq", beuaxjcaiGetDiamond: 2450, beuaxjcaiPrice: 4.99),
+    beuaxjcaiKeyId: "dxismgcwewhrtezo", beuaxjcaiGetDiamond: 2450, beuaxjcaiPrice: 4.99),
   BeuaxjcaiProduct(
-    beuaxjcaiKeyId: "vxqusifauhoifyrh", beuaxjcaiGetDiamond: 5150, beuaxjcaiPrice: 9.99),
+    beuaxjcaiKeyId: "khtxlcejaxmqcsra", beuaxjcaiGetDiamond: 5150, beuaxjcaiPrice: 9.99),
   BeuaxjcaiProduct(
     beuaxjcaiKeyId: "xqmdrvaewpkslhtn", beuaxjcaiGetDiamond: 6400, beuaxjcaiPrice: 12.99),
   BeuaxjcaiProduct(
-    beuaxjcaiKeyId: "wyelujafcagiojjj", beuaxjcaiGetDiamond: 10800, beuaxjcaiPrice: 19.99),
+    beuaxjcaiKeyId: "yadwwvxspgxwlndb", beuaxjcaiGetDiamond: 10800, beuaxjcaiPrice: 19.99),
   BeuaxjcaiProduct(
     beuaxjcaiKeyId: "bczufnoykqjewrsa", beuaxjcaiGetDiamond: 11200, beuaxjcaiPrice: 20.99),
   BeuaxjcaiProduct(
-    beuaxjcaiKeyId: "xwbzewwucitehljp", beuaxjcaiGetDiamond: 29400, beuaxjcaiPrice: 49.99),
+    beuaxjcaiKeyId: "qnrcuelbtiuflyky", beuaxjcaiGetDiamond: 29400, beuaxjcaiPrice: 49.99),
   BeuaxjcaiProduct(
     beuaxjcaiKeyId: "mptxkvdnshfcaeor", beuaxjcaiGetDiamond: 39500, beuaxjcaiPrice: 79.99),
   BeuaxjcaiProduct(
-    beuaxjcaiKeyId: "wkxvtywoyadaqvue", beuaxjcaiGetDiamond: 63700, beuaxjcaiPrice: 99.99),
+    beuaxjcaiKeyId: "ymohxnvpkqxutvab", beuaxjcaiGetDiamond: 63700, beuaxjcaiPrice: 99.99),
 ]
 
-@MainActor
-class IAPManager: ObservableObject {
-  @Published var products: [Product] = []
+final class IAPManager: NSObject, ObservableObject {
+
+  @Published var products: [SKProduct] = []
   @Published var isPurchasing: Bool = false
+
   let userVM: FaioUserViewModel
 
   init(userVM: FaioUserViewModel) {
     self.userVM = userVM
+    super.init()
+    SKPaymentQueue.default().add(self)
+    print("IAPManager init:", ObjectIdentifier(self))
   }
 
-  // MARK: - 核心通用方法（抽离重复逻辑）
-  private func purchaseProduct(_ product: Product) async -> Result<Product.PurchaseResult, Error> {
-    do {
-      let result = try await product.purchase()
-      return .success(result)
-    } catch {
-      return .failure(error)
-    }
+  deinit {
+    SKPaymentQueue.default().remove(self)
   }
 
-  /// 统一处理购买结果（仅在成功加钱后关闭loading）
-  private func handlePurchaseResult(
-    _ result: Result<Product.PurchaseResult, Error>, model: BeuaxjcaiProduct
-  ) async {
-
-    switch result {
-    case .success(let purchaseResult):
-      switch purchaseResult {
-      case .success(let verification):
-        if case .verified(let transaction) = verification {
-          // 1. 购买成功：先更新钻石 + 完成交易
-          userVM.increaseUserDiamond(diamond: model.beuaxjcaiGetDiamond)
-          await transaction.finish()
-          FaioHUD.success("Purchase success")
-          // 2. 仅在成功加钱后关闭loading
-          // isPurchasing = false
-          FaioHUD.hideLoading()
-        } else {
-          // 验证失败：关闭loading + 提示
-          // isPurchasing = false
-          FaioHUD.hideLoading()
-          FaioHUD.error("Purchase unverified")
-        }
-      case .userCancelled:
-        // 用户取消：关闭loading + 提示
-        // isPurchasing = false
-        FaioHUD.hideLoading()
-        FaioHUD.toast("Purchase cancelled")
-      case .pending:
-        // pending状态：保留loading（用户需等待）+ 提示
-        FaioHUD.toast("Purchase pending, please wait")
-      // 注意：pending状态不关闭loading，需等待后续验证结果
-      // 若需要超时关闭，可添加延时任务，示例：
-      // Task {
-      //     try? await Task.sleep(nanoseconds: 10 * 1_000_000_000) // 10秒
-      //     if isPurchasing { isPurchasing = false }
-      // }
-      @unknown default:
-        // 未知状态：关闭loading + 提示
-        // isPurchasing = false
-        FaioHUD.hideLoading()
-        FaioHUD.error("Unknown purchase result")
-      }
-    case .failure(let error):
-      // 购买抛出错误：关闭loading + 提示
-      // isPurchasing = false
-      FaioHUD.hideLoading()
-      FaioHUD.error("Purchase failed: \(error.localizedDescription)")
-      print("Purchase failed:", error)
-    }
+  // MARK: - 拉取商品（StoreKit1）
+  func fetchProducts() {
+    let request = SKProductsRequest(
+      productIdentifiers: Set(ghuencziwProducts.map { $0.beuaxjcaiKeyId }))
+    request.delegate = self
+    request.start()
   }
 
-  // MARK: - 对外暴露的方法
-  func fetchProducts() async {
-    guard products.isEmpty else { return }
-    do {
-      let ids = ghuencziwProducts.map { $0.beuaxjcaiKeyId }
-      products = try await Product.products(for: ids)
-      print("Loaded products:", products.map { $0.id })
-    } catch {
-      FaioHUD.error("Load products failed: \(error.localizedDescription)")
-      print("Fetch products failed:", error)
-    }
-  }
-
-  func recharge(_ model: BeuaxjcaiProduct) async {
-    // 开始购买：显示loading
-    // isPurchasing = true
+  // MARK: - 发起购买（StoreKit1）
+  func recharge(_ productKeyId: String) {
     FaioHUD.showLoading()
-    // 确保产品已加载
-    await fetchProducts()
+    isPurchasing = true
 
-    // 匹配产品（无产品则关闭loading + 返回）
-    guard let product = products.first(where: { $0.id == model.beuaxjcaiKeyId }) else {
-      // isPurchasing = false  // 关键：产品未找到时手动关闭loading
-      FaioHUD.hideLoading()
+    print("IAPManager recharge:", ObjectIdentifier(self))
+
+    guard let product = products.first(where: { $0.productIdentifier == productKeyId }) else {
       FaioHUD.error("Product not found")
+      FaioHUD.hideLoading()
+      isPurchasing = false
       return
     }
 
-    // 执行购买 + 处理结果
-    let purchaseResult = await purchaseProduct(product)
-    await handlePurchaseResult(purchaseResult, model: model)
+    let payment = SKPayment(product: product)
+    SKPaymentQueue.default().add(payment)
+  }
+
+  // MARK: - Facebook 埋点
+  private func logFacebookPurchase(price: Double) {
+    AppEvents.shared.logPurchase(
+      amount: price,
+      currency: "USD",
+      parameters: [AppEvents.ParameterName(rawValue: "fb_mobile_purchase"): "true"]
+    )
+  }
+
+  // MARK: - 找本地配置
+  private func findWalletItem(productID: String) -> BeuaxjcaiProduct? {
+    ghuencziwProducts.first { $0.beuaxjcaiKeyId == productID }
+  }
+}
+
+extension IAPManager: SKPaymentTransactionObserver {
+
+  func paymentQueue(
+    _ queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]
+  ) {
+    for transaction in transactions {
+      switch transaction.transactionState {
+
+      case .purchased:
+        handlePurchased(transaction)
+
+      case .failed:
+        handleFailed(transaction)
+
+      case .restored:
+        SKPaymentQueue.default().finishTransaction(transaction)
+
+      case .purchasing:
+        break
+
+      case .deferred:
+        FaioHUD.toast("Purchase pending")
+
+      @unknown default:
+        break
+      }
+    }
+  }
+
+  private func handlePurchased(_ transaction: SKPaymentTransaction) {
+    guard let model = findWalletItem(productID: transaction.payment.productIdentifier) else {
+      FaioHUD.error("Product config not found")
+      SKPaymentQueue.default().finishTransaction(transaction)
+      FaioHUD.hideLoading()
+      isPurchasing = false
+      return
+    }
+
+    // 如果需要服务器校验
+    if TeabzbaAppStorage.teabzbaIsB {
+      Task {
+        let purchaseID = transaction.transactionIdentifier ?? ""
+        let serverVerificationData: String
+        if let receiptURL = Bundle.main.appStoreReceiptURL,
+          let receiptData = try? Data(contentsOf: receiptURL)
+        {
+          serverVerificationData = receiptData.base64EncodedString()
+        } else {
+          serverVerificationData = ""
+        }
+        let isVerified = try await UgZhyaiwLDKalApiCall().ugZhyaiwLDKalPayCall(
+          purchaseID: purchaseID,
+          serverVerificationData: serverVerificationData,  // StoreKit1 没有 JWS，通常传空或自签
+          orderCode: waknxaPaksUsersOrdercode
+        )
+
+        if isVerified {
+          logFacebookPurchase(price: model.beuaxjcaiPrice)
+          await AdjustManager.shared.trackPurchase(dollar: model.beuaxjcaiPrice)
+          SKPaymentQueue.default().finishTransaction(transaction)
+          FaioHUD.success("Purchase success")
+        } else {
+          SKPaymentQueue.default().finishTransaction(transaction)
+          FaioHUD.error("Purchase unverified")
+        }
+
+        FaioHUD.hideLoading()
+        isPurchasing = false
+      }
+    } else {
+      // 无服务器校验：本地加钻
+      Task { @MainActor in
+        userVM.increaseUserDiamond(diamond: model.beuaxjcaiGetDiamond)
+      }
+
+      logFacebookPurchase(price: model.beuaxjcaiPrice)
+
+      SKPaymentQueue.default().finishTransaction(transaction)
+      FaioHUD.success("Purchase success")
+      FaioHUD.hideLoading()
+      isPurchasing = false
+    }
+  }
+
+  private func handleFailed(_ transaction: SKPaymentTransaction) {
+
+    if let error = transaction.error as? SKError {
+
+      switch error.code {
+      case .paymentCancelled:
+        print("Purchase cancelled")
+
+      default:
+        FaioHUD.error("Purchase failed")
+      }
+    } else {
+      FaioHUD.error("Purchase failed")
+    }
+
+    SKPaymentQueue.default().finishTransaction(transaction)
+    FaioHUD.hideLoading()
+    isPurchasing = false
+  }
+}
+
+extension IAPManager: SKProductsRequestDelegate {
+
+  func productsRequest(_ request: SKProductsRequest, didReceive response: SKProductsResponse) {
+    products = response.products
+    print("Loaded products:", products.map { $0.productIdentifier })
+  }
+
+  func request(_ request: SKRequest, didFailWithError error: Error) {
+    FaioHUD.error("Load products failed: \(error.localizedDescription)")
   }
 }
