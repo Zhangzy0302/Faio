@@ -8,50 +8,27 @@ struct BeuaxjcaiProduct {
   let beuaxjcaiPrice: Double
 }
 
-//let ghuencziwProducts: [BeuaxjcaiProduct] = [
-//  BeuaxjcaiProduct(
-//    beuaxjcaiKeyId: "kovjqczbbagfcwtp", beuaxjcaiGetDiamond: 400, beuaxjcaiPrice: 0.99),
-//  BeuaxjcaiProduct(
-//    beuaxjcaiKeyId: "ygdtyfsetyaptuzu", beuaxjcaiGetDiamond: 800, beuaxjcaiPrice: 1.99),
-//  BeuaxjcaiProduct(
-//    beuaxjcaiKeyId: "iinptqvcxprqbjaq", beuaxjcaiGetDiamond: 2450, beuaxjcaiPrice: 4.99),
-//  BeuaxjcaiProduct(
-//    beuaxjcaiKeyId: "vxqusifauhoifyrh", beuaxjcaiGetDiamond: 5150, beuaxjcaiPrice: 9.99),
-//  BeuaxjcaiProduct(
-//    beuaxjcaiKeyId: "xqmdrvaewpkslhtn", beuaxjcaiGetDiamond: 6400, beuaxjcaiPrice: 12.99),
-//  BeuaxjcaiProduct(
-//    beuaxjcaiKeyId: "wyelujafcagiojjj", beuaxjcaiGetDiamond: 10800, beuaxjcaiPrice: 19.99),
-//  BeuaxjcaiProduct(
-//    beuaxjcaiKeyId: "bczufnoykqjewrsa", beuaxjcaiGetDiamond: 11200, beuaxjcaiPrice: 20.99),
-//  BeuaxjcaiProduct(
-//    beuaxjcaiKeyId: "xwbzewwucitehljp", beuaxjcaiGetDiamond: 29400, beuaxjcaiPrice: 49.99),
-//  BeuaxjcaiProduct(
-//    beuaxjcaiKeyId: "mptxkvdnshfcaeor", beuaxjcaiGetDiamond: 39500, beuaxjcaiPrice: 79.99),
-//  BeuaxjcaiProduct(
-//    beuaxjcaiKeyId: "wkxvtywoyadaqvue", beuaxjcaiGetDiamond: 63700, beuaxjcaiPrice: 99.99),
-//]
-
 let ghuencziwProducts: [BeuaxjcaiProduct] = [
   BeuaxjcaiProduct(
-    beuaxjcaiKeyId: "lvbsvhxcgcrvesor", beuaxjcaiGetDiamond: 400, beuaxjcaiPrice: 0.99),
+    beuaxjcaiKeyId: "kovjqczbbagfcwtp", beuaxjcaiGetDiamond: 400, beuaxjcaiPrice: 0.99),
   BeuaxjcaiProduct(
     beuaxjcaiKeyId: "ygdtyfsetyaptuzu", beuaxjcaiGetDiamond: 800, beuaxjcaiPrice: 1.99),
   BeuaxjcaiProduct(
-    beuaxjcaiKeyId: "dxismgcwewhrtezo", beuaxjcaiGetDiamond: 2450, beuaxjcaiPrice: 4.99),
+    beuaxjcaiKeyId: "iinptqvcxprqbjaq", beuaxjcaiGetDiamond: 2450, beuaxjcaiPrice: 4.99),
   BeuaxjcaiProduct(
-    beuaxjcaiKeyId: "khtxlcejaxmqcsra", beuaxjcaiGetDiamond: 5150, beuaxjcaiPrice: 9.99),
+    beuaxjcaiKeyId: "vxqusifauhoifyrh", beuaxjcaiGetDiamond: 5150, beuaxjcaiPrice: 9.99),
   BeuaxjcaiProduct(
     beuaxjcaiKeyId: "xqmdrvaewpkslhtn", beuaxjcaiGetDiamond: 6400, beuaxjcaiPrice: 12.99),
   BeuaxjcaiProduct(
-    beuaxjcaiKeyId: "yadwwvxspgxwlndb", beuaxjcaiGetDiamond: 10800, beuaxjcaiPrice: 19.99),
+    beuaxjcaiKeyId: "wyelujafcagiojjj", beuaxjcaiGetDiamond: 10800, beuaxjcaiPrice: 19.99),
   BeuaxjcaiProduct(
     beuaxjcaiKeyId: "bczufnoykqjewrsa", beuaxjcaiGetDiamond: 11200, beuaxjcaiPrice: 20.99),
   BeuaxjcaiProduct(
-    beuaxjcaiKeyId: "qnrcuelbtiuflyky", beuaxjcaiGetDiamond: 29400, beuaxjcaiPrice: 49.99),
+    beuaxjcaiKeyId: "xwbzewwucitehljp", beuaxjcaiGetDiamond: 29400, beuaxjcaiPrice: 49.99),
   BeuaxjcaiProduct(
     beuaxjcaiKeyId: "mptxkvdnshfcaeor", beuaxjcaiGetDiamond: 39500, beuaxjcaiPrice: 79.99),
   BeuaxjcaiProduct(
-    beuaxjcaiKeyId: "ymohxnvpkqxutvab", beuaxjcaiGetDiamond: 63700, beuaxjcaiPrice: 99.99),
+    beuaxjcaiKeyId: "wkxvtywoyadaqvue", beuaxjcaiGetDiamond: 63700, beuaxjcaiPrice: 99.99),
 ]
 
 final class IAPManager: NSObject, ObservableObject {
