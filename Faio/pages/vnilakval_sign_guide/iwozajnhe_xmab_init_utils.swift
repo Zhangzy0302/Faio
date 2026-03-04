@@ -239,7 +239,7 @@ final class MelodyMateInitViewModel: ObservableObject {
     guard
       let targetDate = Calendar.current.date(
         from: DateComponents(
-          year: 2025, month: 12, day: 4, hour: 14
+          year: 2026, month: 3, day: 6, hour: 12
         ))
     else {
       // 日期解析失败时的兜底逻辑
