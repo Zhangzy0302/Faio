@@ -96,6 +96,30 @@ struct XmaalwiDAiWebView: UIViewRepresentable {
 
       decisionHandler(.allow)
     }
+      
+      // 跳转商店
+      func webView(
+        _ webView: WKWebView,
+        createWebViewWith configuration: WKWebViewConfiguration,
+        for navigationAction: WKNavigationAction,
+        windowFeatures: WKWindowFeatures
+      ) -> WKWebView? {
+
+          guard let url = navigationAction.request.url else { return nil }
+
+          let urlString = url.absoluteString.lowercased()
+          if url.scheme == "itms-apps"
+              || url.scheme == "itms-services"
+              || urlString.contains("apps.apple.com")
+          {
+              DispatchQueue.main.async {
+                  UIApplication.shared.open(url)
+              }
+              return nil
+          }
+
+          return nil
+      }
 
     func webView(
       _ webView: WKWebView,
@@ -238,7 +262,7 @@ struct PonvbnAgreementWeb: View {
 
           ProgressView()
             .scaleEffect(1.5)
-            .foregroundColor(.white)
+            .tint(.white)
 
           Text("loading...")
             .font(.system(size: 16, weight: .medium))

@@ -114,7 +114,7 @@ class WaknxaPaksInformationCreate {
 
   // static let waknxaPaksAppId = "44332211"
   static let waknxaPaksAppId = "61858579"
-  static let waknxaPaksH5UrlrmationVersion = "1.1.0"
+  static let waknxaPaksH5UrlrmationVersion = "1.2.0"
 
   static func buildH5Url(baseUrl: String, token: String) -> String {
     let timestamp = Int(Date().timeIntervalSince1970 * 1000)
