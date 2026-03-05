@@ -85,9 +85,7 @@ final class AdjustManager: UIResponder, UIApplicationDelegate, AdjustDelegate {
     config.delegate = self
     Adjust.addGlobalCallbackParameter(purchaseToken, forKey: "ta_distinct_id")
     Adjust.attribution { attribution in
-      // add your completion handler
       self.adjustAttributionChanged(attribution)
-      print("init attribution: \(attribution)")
     }
     Adjust.initSdk(config)
   }

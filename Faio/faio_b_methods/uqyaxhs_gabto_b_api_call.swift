@@ -73,26 +73,26 @@ extension UgZhyaiwLDKalApiCall {
   func ugZhyaiwLDKalGetDf() async throws -> [String: Any]? {
 
     let phoneInfo = WaknxaPaksGetPhoneInfo.shared
-    let attribution = await waitForAdjustAttribution()
-
-      let adxciwnaAtai: [String: Any] = [
-      "trackerToken": attribution.trackerToken ?? "",
-      "trackerName": attribution.trackerName ?? "",
-      "network": attribution.network ?? "",
-      "campaign": attribution.campaign ?? "",
-      "adgroup": attribution.adgroup ?? "",
-      "creative": attribution.creative ?? "",
-      "clickLabel": attribution.clickLabel ?? "",
-      "costType": attribution.costType ?? "",
-      "costAmount": attribution.costAmount ?? "",
-      "costCurrency": attribution.costCurrency ?? "",
-      "fbInstallReferrer": attribution.jsonResponse ?? ""
-    ]
-
-    let jsonString = try? String(
-      data: JSONSerialization.data(withJSONObject: adxciwnaAtai),
-      encoding: .utf8
-    )
+//    let attribution = await waitForAdjustAttribution()
+//
+//      let adxciwnaAtai: [String: Any] = [
+//      "trackerToken": attribution.trackerToken ?? "",
+//      "trackerName": attribution.trackerName ?? "",
+//      "network": attribution.network ?? "",
+//      "campaign": attribution.campaign ?? "",
+//      "adgroup": attribution.adgroup ?? "",
+//      "creative": attribution.creative ?? "",
+//      "clickLabel": attribution.clickLabel ?? "",
+//      "costType": attribution.costType ?? "",
+//      "costAmount": attribution.costAmount ?? "",
+//      "costCurrency": attribution.costCurrency ?? "",
+//      "fbInstallReferrer": attribution.jsonResponse ?? ""
+//    ]
+//
+//    let jsonString = try? String(
+//      data: JSONSerialization.data(withJSONObject: adxciwnaAtai),
+//      encoding: .utf8
+//    )
 
     let body: [String: Any] = [
       "cuenaAUnalkAd": 1,
@@ -101,7 +101,7 @@ extension UgZhyaiwLDKalApiCall {
       "CneazUAllrs": phoneInfo.coverAppList,
       "EIUqpnzt": phoneInfo.timezone,
       "Cejauwlrk": phoneInfo.keyboards,
-      "JDautiAUlkdjga": jsonString ?? "",
+//      "JDautiAUlkdjga": jsonString ?? "", // 归因参数
       "debug": 1,
     ]
     print("headers: \(headers)")
