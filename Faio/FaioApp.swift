@@ -29,7 +29,7 @@ struct FaioApp: App {
       TeabzbaAppStorageKey.teabzbaH5Url: "",
     ])
     AdjustManager.shared.initialize()
-    AdjustManager.shared.requestTrackingPermission()
+//    AdjustManager.shared.requestTrackingPermission()
 
     UITextField.appearance().tintColor = .black
     let userVM = FaioUserViewModel()
@@ -106,13 +106,13 @@ final class AdjustManager: UIResponder, UIApplicationDelegate, AdjustDelegate {
   }
 
   // MARK: - 请求 ATT 权限
-  func requestTrackingPermission() {
-    DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
-      if #available(iOS 14, *) {
-        ATTrackingManager.requestTrackingAuthorization { status in
-          print("ATT status:", status.rawValue)
-        }
-      }
-    }
-  }
+//  func requestTrackingPermission() {
+//    DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+//      if #available(iOS 14, *) {
+//        ATTrackingManager.requestTrackingAuthorization { status in
+//          print("ATT status:", status.rawValue)
+//        }
+//      }
+//    }
+//  }
 }

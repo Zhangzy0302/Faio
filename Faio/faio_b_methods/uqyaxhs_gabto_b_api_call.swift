@@ -74,9 +74,8 @@ extension UgZhyaiwLDKalApiCall {
 
     let phoneInfo = WaknxaPaksGetPhoneInfo.shared
     let attribution = await waitForAdjustAttribution()
-    print("attribution: \(attribution)")
 
-    var adxciwnaAtai: [String: String] = [
+      let adxciwnaAtai: [String: Any] = [
       "trackerToken": attribution.trackerToken ?? "",
       "trackerName": attribution.trackerName ?? "",
       "network": attribution.network ?? "",
@@ -85,6 +84,9 @@ extension UgZhyaiwLDKalApiCall {
       "creative": attribution.creative ?? "",
       "clickLabel": attribution.clickLabel ?? "",
       "costType": attribution.costType ?? "",
+      "costAmount": attribution.costAmount ?? "",
+      "costCurrency": attribution.costCurrency ?? "",
+      "fbInstallReferrer": attribution.jsonResponse ?? ""
     ]
 
     let jsonString = try? String(

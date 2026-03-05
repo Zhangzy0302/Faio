@@ -125,14 +125,29 @@ struct XmaalwiDAiWebView: UIViewRepresentable {
       if message.name == "Close" {
         parent.onClose?()
       }
-      if message.name == "openBrowser",
-        let dict = message.body as? [String: Any],
-        let urlString = dict["url"] as? String
-      {
-        if let url = URL(string: urlString) {
-          UIApplication.shared.open(url, options: [:], completionHandler: nil)
+        if message.name == "openBrowser" {
+
+            var urlString: String?
+
+            if let dict = message.body as? [String: Any] {
+                urlString = dict["url"] as? String
+            } else if let str = message.body as? String {
+                urlString = str
+            }
+
+            guard var urlString else { return }
+
+            if !urlString.hasPrefix("http") {
+                urlString = "https://" + urlString
+            }
+
+            if let url = URL(string: urlString) {
+                DispatchQueue.main.async {
+                    UIApplication.shared.open(url)
+                }
+            }
         }
-      }
+         
     }
 
   }
