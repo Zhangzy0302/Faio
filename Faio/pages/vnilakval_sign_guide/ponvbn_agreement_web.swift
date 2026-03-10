@@ -242,7 +242,8 @@ struct PonvbnAgreementWeb: View {
             }
           },
           onClose: {
-            TeabzbaAppStorage.teabzbaUserToken = ""
+              TeabzbaAppStorage.teabzbaUserToken = ""
+//              GhwbAMaldwiBInfo.saveUserToken("")
             appPath.removeLast(appPath.count)
           },
           onRecharge: { orderCode, batchNo in
@@ -268,7 +269,7 @@ struct PonvbnAgreementWeb: View {
             .font(.system(size: 16, weight: .medium))
             .foregroundColor(.white)
         }
-        .padding()
+        .padding(24)
         .background(.black.opacity(0.9))
         .cornerRadius(16)
       }

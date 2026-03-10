@@ -55,8 +55,9 @@ struct FaioApp: App {
             chatVM.getMyChatRoomsNotBlock()
           }
         FaioHUDView()
+      }.task {
+          iapManager.fetchProducts()
       }
-
     }
   }
 }

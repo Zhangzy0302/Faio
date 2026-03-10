@@ -44,7 +44,7 @@
 		<string>wechat</string>
 		<string>alipay</string>
 		<string>mqq</string>
-    <string>itms-apps</string>
+		<string>itms-apps</string>
 		<string>itms-services</string>
 	</array>
 	<key>NSAppTransportSecurity</key>

@@ -20,12 +20,11 @@ final class GhwbAMaldwiBInfo {
 
   static func getAllStorageData() {
 
-    devidGhwbAMaldwi =
-      read(key: "devidGhwbAMaldwi_3")
+    devidGhwbAMaldwi = read(key: "devidGhwbAMaldwi_3")
 
-    passwordGhwbAMaldwi =
-      read(key: "passwordGhwbAMaldwi_3")
-
+    passwordGhwbAMaldwi = read(key: "passwordGhwbAMaldwi_3")
+      
+//      userTokenGhwbAMaldwi = read(key: "userTokenGhwbAMaldwi_3")
   }
 }
 
@@ -42,6 +41,20 @@ extension GhwbAMaldwiBInfo {
     save(key: "devidGhwbAMaldwi_3", value: value)
   }
 }
+
+//extension GhwbAMaldwiBInfo {
+//
+//  static var userTokenGhwbAMaldwi: String?
+//
+//  static var getUserToken: String {
+//      userTokenGhwbAMaldwi ?? ""
+//  }
+//
+//  static func saveUserToken(_ value: String) {
+//      userTokenGhwbAMaldwi = value
+//    save(key: "userTokenGhwbAMaldwi_3", value: value)
+//  }
+//}
 
 extension GhwbAMaldwiBInfo {
 
@@ -108,8 +121,8 @@ extension GhwbAMaldwiBInfo {
 enum TeabzbaAppStorageKey {
   static let teabzbaIsB = "teabzbaIsB"
   static let teabzbaPushToken = "teabzbaPushToken"
-  static let teabzbaUserToken = "teabzbaUserToken"
   static let teabzbaH5Url = "teabzbaH5Url"
+    static let teabzbaUserToken = "teabzbaUserToken"
 }
 
 final class TeabzbaAppStorage {
@@ -121,17 +134,17 @@ final class TeabzbaAppStorage {
     get { ud.bool(forKey: TeabzbaAppStorageKey.teabzbaIsB) }
     set { ud.set(newValue, forKey: TeabzbaAppStorageKey.teabzbaIsB) }
   }
+    
+    // MARK: - usertoken
+    static var teabzbaUserToken: String {
+      get { ud.string(forKey: TeabzbaAppStorageKey.teabzbaUserToken) ?? ""}
+      set { ud.set(newValue, forKey: TeabzbaAppStorageKey.teabzbaUserToken) }
+    }
 
   // MARK: - pushToken
   static var teabzbaPushToken: String {
     get { ud.string(forKey: TeabzbaAppStorageKey.teabzbaPushToken) ?? "" }
     set { ud.set(newValue, forKey: TeabzbaAppStorageKey.teabzbaPushToken) }
-  }
-
-  // MARK: - userToken
-  static var teabzbaUserToken: String {
-    get { ud.string(forKey: TeabzbaAppStorageKey.teabzbaUserToken) ?? "" }
-    set { ud.set(newValue, forKey: TeabzbaAppStorageKey.teabzbaUserToken) }
   }
 
   // MARK: - h5Url

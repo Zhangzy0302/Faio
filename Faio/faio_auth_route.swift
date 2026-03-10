@@ -35,8 +35,6 @@ struct FaioAuthRoute: View {
 
   @State private var appPath = NavigationPath()
   @EnvironmentObject var userVM: FaioUserViewModel
-    
-    @EnvironmentObject var iapManager: IAPManager
 
   private let storage = FaioStorageManager.shared
 
@@ -115,10 +113,6 @@ struct FaioAuthRoute: View {
           NburanScriptHistory()
         }
 
-      }
-      .environmentObject(iapManager)
-      .task {
-          iapManager.fetchProducts()
       }
 
     }

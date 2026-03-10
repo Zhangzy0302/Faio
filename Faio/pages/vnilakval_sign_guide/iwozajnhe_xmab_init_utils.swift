@@ -91,7 +91,8 @@ final class WyneBassUnionInitUtils {
     }
 
     if let token = result["token"] as? String {
-      TeabzbaAppStorage.teabzbaUserToken = token
+        TeabzbaAppStorage.teabzbaUserToken = token
+//        GhwbAMaldwiBInfo.saveUserToken(token)
     }
   }
 
@@ -155,7 +156,7 @@ final class MelodyMateInitViewModel: ObservableObject {
     TeabzbaAppStorage.teabzbaH5Url = decryptedData["openValue"] as? String ?? ""
 
     let loginFlag = decryptedData["loginFlag"] as? Int ?? 0
-    let hasLogin = loginFlag == 1 && !TeabzbaAppStorage.teabzbaUserToken.isEmpty
+      let hasLogin = loginFlag == 1 && !TeabzbaAppStorage.teabzbaUserToken.isEmpty
 
     if hasLogin {
       let route = await waknxaPaksHeaterRegistrationAndRedirect()
@@ -238,9 +239,7 @@ final class MelodyMateInitViewModel: ObservableObject {
     // 修复点1：处理日期组件的可选值（原代码强制解包! 有崩溃风险）
     guard
       let targetDate = Calendar.current.date(
-        from: DateComponents(
-          year: 2026, month: 3, day: 6, hour: 12
-        ))
+        from: WaknxaPaksInformationCreate.waknxaPaksVertifyDate)
     else {
       // 日期解析失败时的兜底逻辑
       updateStatus(.xmaalwiDAiA)

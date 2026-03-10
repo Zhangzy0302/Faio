@@ -133,8 +133,8 @@ extension UgZhyaiwLDKalApiCall {
       body["oeAHjwbnaydd"] = GhwbAMaldwiBInfo.getPassword
     }
 
-    print(body)
-    print("headers: \(headers)")
+//    print(body)
+//    print("headers: \(headers)")
 
     return try await request(
       path: "/opi/v1/jsuwLAjwyalktl",

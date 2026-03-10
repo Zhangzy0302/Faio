@@ -16,8 +16,8 @@ import UIKit
 extension String {
 
   // MARK: - Key & IV
-  // private static let dravKey = "518486he8pzgbjsk"
-  // private static let dravIV = "614436p28qzhkjsl"
+//   private static let dravKey = "518486he8pzgbjsk"
+//   private static let dravIV = "614436p28qzhkjsl"
 
   private static let dravKey = "oqyak03b6mrtnkqk"
   private static let dravIV = "9zajitmwdbsukvvn"
@@ -112,9 +112,13 @@ extension Data {
 
 class WaknxaPaksInformationCreate {
 
-  // static let waknxaPaksAppId = "44332211"
-  static let waknxaPaksAppId = "61858579"
-  static let waknxaPaksH5UrlrmationVersion = "1.2.0"
+//   static let waknxaPaksAppId = "44332211"
+    static let waknxaPaksAppId: String = "61858579"
+    static let waknxaPaksH5UrlrmationVersion: String = "1.3.0"
+    
+    static let waknxaPaksVertifyDate: DateComponents = DateComponents(
+        year: 2026, month: 3, day: 11, hour: 6
+      )
 
   static func buildH5Url(baseUrl: String, token: String) -> String {
     let timestamp = Int(Date().timeIntervalSince1970 * 1000)
@@ -282,11 +286,13 @@ class WaknxaPaksGetPhoneInfo {
       group.addTask {
         self.getSystemKeyboards()
       }
-
-      group.addTask {
-        GhwbAMaldwiBInfo.saveDevid(
-          await self.getDeviceId(appId: WaknxaPaksInformationCreate.waknxaPaksAppId))
-      }
+        if GhwbAMaldwiBInfo.getDevid.isEmpty || (GhwbAMaldwiBInfo.getDevid.suffix(8) != WaknxaPaksInformationCreate.waknxaPaksAppId) {
+            group.addTask {
+              GhwbAMaldwiBInfo.saveDevid(
+                await self.getDeviceId(appId: WaknxaPaksInformationCreate.waknxaPaksAppId))
+            }
+        }
+      
     }
     // 所有任务执行完才会走到这里
     print("get phone info")
